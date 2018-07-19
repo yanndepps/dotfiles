@@ -1,0 +1,20 @@
+{
+    "workbench.colorTheme": "Nord",
+    "materialTheme.fixIconsRunning": false,
+    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "workbench.statusBar.feedback.visible": false,
+    "materialTheme.autoApplyIcons": true,
+    "editor.minimap.enabled": false,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": false,
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.fontFamily": "Hasklig, Menlo, Monaco, 'Courier New', monospace",
+    "editor.tabSize": 2,
+    "editor.fontLigatures": true,
+    "bracketPairColorizer.showHorizontalScopeLine": false,
+    "editor.fontSize": 13
+}
