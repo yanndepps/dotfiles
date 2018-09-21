@@ -1,38 +1,45 @@
 " Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'christoomey/vim-sort-motion'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/fzf'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 "" Language Support
-Plug 'jlanzarotta/bufexplorer'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
+Plug 'reedes/vim-pencil'
 Plug 'sbl/scvim'
 Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
 Plug 'sophacles/vim-processing'
+
+" Navigation
+Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+
+" Editing
+Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ervandew/supertab'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+
 " Vim, Tmux, and Airline theming
-Plug 'vim-airline/vim-airline'
 Plug 'arcticicestudio/nord-vim'
 Plug 'trevordmiller/nova-vim'
-" Install polyglot for language plugins
-Plug 'sheerun/vim-polyglot'
-" tab completion
-Plug 'ervandew/supertab'
-" async lint engine
+Plug 'vim-airline/vim-airline'
+
+" Tasks Running 
 Plug 'w0rp/ale'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 " }}}
 
@@ -234,3 +241,6 @@ function! GfIndex(filepath)
     execute "edit" a:filepath
   endif
 endfunction
+
+" Open markdown files with Chrome.
+autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
