@@ -8,32 +8,38 @@ Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'munshkr/vim-tidal'
+"" Language Support
 Plug 'jlanzarotta/bufexplorer'
+Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-mix-format'
+Plug 'munshkr/vim-tidal'
+Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'sbl/scvim'
 Plug 'scrooloose/nerdtree'
 Plug 'sophacles/vim-processing'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
-Plug 'mhinz/vim-mix-format'
 " Vim, Tmux, and Airline theming
 Plug 'vim-airline/vim-airline'
 Plug 'arcticicestudio/nord-vim'
+Plug 'trevordmiller/nova-vim'
 " Install polyglot for language plugins
 Plug 'sheerun/vim-polyglot'
 " tab completion
 Plug 'ervandew/supertab'
+" async lint engine
+Plug 'w0rp/ale'
 call plug#end()
 " }}}
 
 " Colors/Theme {{{
 set background=dark
-colorscheme nord
+" colorscheme nord
+colorscheme nova
 " }}}
 
 " ============================== FZF/RIPGREP
@@ -45,6 +51,24 @@ command! -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --ignore-case --color=always '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview('right:50%', '?'))
+
+" ============================== ALE
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
+
+" ============================== PYTHON
+
+" ============================== STATUS LINE ==============================
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
+endfunction
+set statusline=
+set statusline=%#Question#
+set statusline+=%{LinterStatus()}
+set statusline+=%#StatusLineNC#
+set statusline+=[%n]\ %f\ %m%r
+set statusline+=%=[line:\ %l/%L][col:\ %03c]
 
 " ============================== SETTINGS ==============================
 set autoindent
@@ -70,12 +94,13 @@ set nobackup
 set noswapfile
 set noshowmode
 set number
-set path+=src
+" set path+=src
+set shell=zsh
 set shiftwidth=2
 set showtabline=0
 set softtabstop=2
 set spelllang=en_us
-set spellfile=~/Dropbox/vimspell/en.utf-8.add
+" set spellfile=~/Dropbox/vimspell/en.utf-8.add
 set splitbelow
 set timeoutlen=2000
 set ttimeoutlen=0
@@ -151,7 +176,7 @@ nnoremap ,sa ggVG
 
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
-
+nmap <leader>d <Plug>(ale_fix)
 " kill all windows but current
 nnoremap ,x :only<CR>
 
