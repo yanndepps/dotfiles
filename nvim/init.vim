@@ -8,13 +8,12 @@ Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
+Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'rizzatti/dash.vim'
 Plug 'sbl/scvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'sophacles/vim-processing'
-Plug 'timburgess/extempore.vim'
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -251,8 +250,8 @@ function! GfIndex(filepath)
   endif
 endfunction
 
-" Open markdown files with Chrome.
-autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+" markdown files
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " OF setup : run make runRelease
 autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
