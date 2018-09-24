@@ -2,16 +2,19 @@
 call plug#begin('~/.config/nvim/plugged')
 
 "" Language Support
+Plug 'bfrg/vim-cpp-modern'
+Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'reedes/vim-pencil'
+Plug 'rizzatti/dash.vim'
 Plug 'sbl/scvim'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'sophacles/vim-processing'
+Plug 'timburgess/extempore.vim'
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -50,6 +53,8 @@ colorscheme nova
 " }}}
 
 " ============================== FZF/RIPGREP
+set rtp+=/usr/local/opt/fzf
+
 " ========== files
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
@@ -60,8 +65,13 @@ command! -nargs=* Rg
   \   fzf#vim#with_preview('right:50%', '?'))
 
 " ============================== ALE
+" ALEToggle to activate
+let g:ale_enabled = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
+
+" ============================== POWERLINE
+let g:airline_powerline_fonts = 1
 
 " ============================== PYTHON
 
@@ -133,10 +143,6 @@ let g:scFlash = 1
 " ============================== MAPPINGS ==============================
 let mapleader = " "
 
-" NERDTree
-nnoremap <F2> :NERDTreeToggle<CR>
-nnoremap <F3> :NERDTreeFind<CR>
-
 " close buffer
 nnoremap ,d :bd<CR>
 " close all buffers
@@ -183,12 +189,15 @@ nnoremap ,sa ggVG
 
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
-nmap <leader>d <Plug>(ale_fix)
+" nmap <leader>d <Plug>(ale_fix)
 " kill all windows but current
 nnoremap ,x :only<CR>
 
 " close quickfix
 nnoremap ,cc :cclose<CR>
+
+" open Dash documentation
+nnoremap ,da :Dash<CR>
 
 " exit terminal
 tnoremap <Esc> <C-\><C-n>
@@ -244,3 +253,8 @@ endfunction
 
 " Open markdown files with Chrome.
 autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+
+" OF setup : run make runRelease
+autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
+
+" ============================== END ===================================
