@@ -7,6 +7,9 @@ export ZSH="/Users/yanndepps/.oh-my-zsh"
 # Path to DOOM-EMACS
 export PATH=~/.emacs.d/bin:$PATH
 
+# Path to OF
+OF_ROOT="/Users/yanndepps/Documents/of_v0.10.0_osx_release"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
