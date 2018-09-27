@@ -19,3 +19,6 @@
 
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
+
+;; Modules
+(load! "+ui") ;; ui mods and ligature stuff
