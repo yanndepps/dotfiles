@@ -47,8 +47,8 @@ call plug#end()
 
 " Colors/Theme {{{
 set background=dark
-" colorscheme nord
-colorscheme nova
+colorscheme nord
+" colorscheme nova
 " }}}
 
 " ============================== FZF/RIPGREP
