@@ -5,9 +5,22 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
-;; may have their own settings.
-(load-theme 'doom-nord t)
+;; Load the theme
+(load-theme 'doom-spacegrey t)
+
+;; Alt key
+(setq ns-right-alternate-modifier 'none)
+
+;; Dark title bar
+(add-to-list 'default-frame-alist
+             '(ns-transparent-titlebar . t))
+
+(add-to-list 'default-frame-alist
+             '(ns-appearance . dark))
+;; Processing
+(setq processing-location "/usr/local/bin/processing-java")
+(setq processing-application-dir "/Applications/Processing.app")
+(setq processing-sketchbook-dir "~/Documents/Processing")
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
