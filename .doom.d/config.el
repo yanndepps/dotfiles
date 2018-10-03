@@ -22,6 +22,12 @@
 (setq processing-application-dir "/Applications/Processing.app")
 (setq processing-sketchbook-dir "~/Documents/Processing")
 
+;; SuperCollider
+(add-to-list 'load-path "/Users/yanndepps/scsources/scel/el")
+(require 'sclang)
+(setenv "PATH" (concat (getenv "PATH") ":/Applications/SuperCollider.app/Contents/MacOS"))
+(setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
+
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 
