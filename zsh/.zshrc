@@ -1,5 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/Users/yanndepps/Library/Python/3.7/bin:$PATH
+
+# Activate Python3 virtualenv
+alias ct3="source /Users/yanndepps/CTrain_VENV/bin/activate"
+alias ct2="source /Users/yanndepps/CTrainp2_VENV/bin/activate"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/yanndepps/.oh-my-zsh"
@@ -9,9 +14,6 @@ export PATH=~/.emacs.d/bin:$PATH
 
 # Path to OF
 OF_ROOT="/Users/yanndepps/Documents/of_v0.10.0_osx_release"
-
-# Activate Python3 virtualenv
-alias ct3="source /Users/yanndepps/CTrain_VENV/bin/activate"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
