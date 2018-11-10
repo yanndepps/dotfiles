@@ -1,6 +1,11 @@
 " Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
+" Map Neovim's external plugin update function (no args) to vim-plug's (1 arg)
+function! DoRemote(arg)
+	UpdateRemotePlugins
+endfunction
+
 "" Language Support
 Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
@@ -10,6 +15,8 @@ Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'rizzatti/dash.vim'
 Plug 'sbl/scvim'
 Plug 'sheerun/vim-polyglot'
@@ -138,6 +145,11 @@ set cursorline
 let g:sclangPipeApp = "/Users/yanndepps/.config/nvim/plugged/scvim/bin/start_pipe"
 let g:sclangDispatcher = "/Users/yanndepps/.config/nvim/plugged/scvim/bin/sc_dispatcher"
 let g:scFlash = 1
+" options for the multiplexer
+" :call SClangStart("h", 30)
+
+" Stop vim-polyglot from loading for TeX, using vimtex instead
+let g:polyglot_disabled = ['latex']
 
 " ============================== MAPPINGS ==============================
 let mapleader = " "
