@@ -10,6 +10,7 @@ endfunction
 Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
+Plug 'timburgess/extempore.vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
@@ -116,7 +117,7 @@ set mouse=a
 set nobackup
 set noswapfile
 set noshowmode
-set number
+set number relativenumber
 " set path+=src
 set shell=zsh
 set shiftwidth=2
@@ -124,11 +125,11 @@ set showtabline=0
 set softtabstop=2
 set spelllang=en_us
 " set spellfile=~/Dropbox/vimspell/en.utf-8.add
-set splitbelow
+set splitbelow splitright
 set timeoutlen=2000
 set ttimeoutlen=0
 set wildmenu
-
+set wildmode=longest,list,full
 " reload changed file on focus, buffer enter
 " helps if file was changed externally.
 augroup ReloadGroup
