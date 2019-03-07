@@ -3,3 +3,4 @@
 
 (package! extempore-mode)
 (package! processing-mode)
+(package! ranger)

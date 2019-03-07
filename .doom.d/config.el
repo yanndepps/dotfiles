@@ -6,10 +6,14 @@
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
 ;; Load the theme
-(load-theme 'doom-spacegrey t)
+;; (load-theme 'doom-spacegrey t)
+(load-theme 'doom-nord t)
 
 ;; Alt key
-(setq ns-right-alternate-modifier 'none)
+(setq ns-alternate-modifier 'none)
+
+;; No title bar
+;; (setq default-frame-alist '((undecorated . t)))
 
 ;; Dark title bar
 (add-to-list 'default-frame-alist
@@ -41,3 +45,38 @@
 
 ;; Modules
 (load! "+ui") ;; ui mods and ligature stuff
+(load! "+ranger") ;; file manager stuff
+
+;; Org setup
+(after! org
+  (setq org-agenda-files (list "~/org/work.org"
+                               "~/org/notes.org"
+                               "~/org/sosshit.org"
+                               "~/org/home.org")))
+
+;; LaTeX defaults
+(with-eval-after-load 'ox-latex
+                      (add-to-list 'org-latex-classes
+                                   '("bjmarticle"
+                                     "\\documentclass{article}
+                                     \\usepackage[utf8]{inputenc}
+                                     \\usepackage[T1]{fontenc}
+                                     \\usepackage{graphicx}
+                                     \\usepackage{longtable}
+                                     \\usepackage{hyperref}
+                                     \\usepackage{natbib}
+                                     \\usepackage{amssymb}
+                                     \\usepackage{amsmath}
+                                     \\usepackage{geometry}
+                                     \\geometry{a4paper,left=2.5cm,top=2cm,right=2.5cm,bottom=2cm,marginparsep=7pt, marginparwidth=.6in}"
+                                     ("\\section{%s}" . "\\section*{%s}")
+                                     ("\\subsection{%s}" . "\\subsection*{%s}")
+                                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+
+;; Tidal
+(setq load-path (cons "~/tidal/" load-path))
+(require 'tidal)
+(setq tidal-interpreter "/usr/local/bin/ghci")

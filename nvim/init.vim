@@ -7,7 +7,7 @@ function! DoRemote(arg)
 endfunction
 
 "" Language Support
-Plug 'bfrg/vim-cpp-modern'
+" Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'timburgess/extempore.vim'
@@ -19,7 +19,8 @@ Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'rizzatti/dash.vim'
-Plug 'sbl/scvim'
+" Plug 'sbl/scvim'
+Plug 'davidgranstrom/scnvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'sophacles/vim-processing'
 
@@ -41,7 +42,7 @@ Plug 'tpope/vim-surround'
 
 " Vim, Tmux, and Airline theming
 Plug 'arcticicestudio/nord-vim'
-Plug 'trevordmiller/nova-vim'
+" Plug 'trevordmiller/nova-vim'
 Plug 'vim-airline/vim-airline'
 
 " Tasks Running 
@@ -143,12 +144,29 @@ hi CursorLineNR ctermfg=black ctermbg=yellow
 set cursorline
 
 " =========== SuperCollider SCVim
-let g:sclangPipeApp = "/Users/yanndepps/.config/nvim/plugged/scvim/bin/start_pipe"
-let g:sclangDispatcher = "/Users/yanndepps/.config/nvim/plugged/scvim/bin/sc_dispatcher"
-let g:scFlash = 1
-" options for the multiplexer
-" :call SClangStart("h", 30)
+" vertical 'v' or horizontal 'h' split
+let g:scnvim_postwin_orientation = 'h'
 
+" position of the post window 'right' or 'left'
+" let g:scnvim_postwin_direction = 'right'
+
+" default is half the terminal size for vertical and a third for horizontal
+" let g:scnvim_postwin_size = 25
+
+" automatically open post window on a SuperCollider error
+let g:scnvim_postwin_auto_toggle = 1
+
+
+" duration of the highlight
+let g:scnvim_eval_flash_duration = 100
+
+" number of flashes. A value of 0 disables this feature.
+let g:scnvim_eval_flash_repeats = 2
+
+" configure the color
+highlight SCNvimEval guifg=black guibg=white ctermfg=black ctermbg=white
+
+" =========== Polyglot-LaTeX
 " Stop vim-polyglot from loading for TeX, using vimtex instead
 let g:polyglot_disabled = ['latex']
 
@@ -198,6 +216,10 @@ nnoremap ,hh :noh<CR>
 
 " select all
 nnoremap ,sa ggVG
+
+" remap supercollider post window toggle
+nmap <Space>o <Plug>(scnvim-postwindow-toggle)
+nmap <Space>l <Plug>(scnvim-postwindow-clear)
 
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
