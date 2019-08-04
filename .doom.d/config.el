@@ -7,7 +7,12 @@
 
 ;; Load the theme
 ;; (load-theme 'doom-spacegrey t)
+;; (load-theme 'doom-opera t)
+;; (load-theme 'doom-opera-light t)
+;; (load-theme 'doom-gruvbox t)
+;; (load-theme 'doom-solarized-light t)
 (load-theme 'doom-nord t)
+;; (load-theme 'doom-nord-light t)
 
 ;; Alt key
 (setq ns-alternate-modifier 'none)
@@ -33,10 +38,10 @@
 (setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
 
 ;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
+;; (doom-themes-visual-bell-config)
 
 ;; Enable custom neotree theme (all-the-icons must be installed!)
-(doom-themes-neotree-config)
+;; (doom-themes-neotree-config)
 ;; or for treemacs users
 (doom-themes-treemacs-config)
 
@@ -47,36 +52,48 @@
 (load! "+ui") ;; ui mods and ligature stuff
 (load! "+ranger") ;; file manager stuff
 
-;; Org setup
-(after! org
-  (setq org-agenda-files (list "~/org/work.org"
-                               "~/org/notes.org"
-                               "~/org/sosshit.org"
-                               "~/org/home.org")))
-
-;; LaTeX defaults
-(with-eval-after-load 'ox-latex
-                      (add-to-list 'org-latex-classes
-                                   '("bjmarticle"
-                                     "\\documentclass{article}
-                                     \\usepackage[utf8]{inputenc}
-                                     \\usepackage[T1]{fontenc}
-                                     \\usepackage{graphicx}
-                                     \\usepackage{longtable}
-                                     \\usepackage{hyperref}
-                                     \\usepackage{natbib}
-                                     \\usepackage{amssymb}
-                                     \\usepackage{amsmath}
-                                     \\usepackage{geometry}
-                                     \\geometry{a4paper,left=2.5cm,top=2cm,right=2.5cm,bottom=2cm,marginparsep=7pt, marginparwidth=.6in}"
-                                     ("\\section{%s}" . "\\section*{%s}")
-                                     ("\\subsection{%s}" . "\\subsection*{%s}")
-                                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                                     ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                                     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+;; Zaiste setup
+(def-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                         :time-grid t
+                                         :scheduled today)
+                                  (:name "Due today"
+                                         :deadline today)
+                                  (:name "Important"
+                                         :priority "A")
+                                  (:name "Overdue"
+                                         :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Big Outcomes"
+                                         :tag "bo")))
+  :config
+  (org-super-agenda-mode)
+  )
 
 
-;; Tidal
-(setq load-path (cons "~/tidal/" load-path))
-(require 'tidal)
-(setq tidal-interpreter "/usr/local/bin/ghci")
+(setq
+ web-mode-markup-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-css-indent-offset 2
+ org-agenda-skip-scheduled-if-done t
+ org-agenda-skip-deadline-if-done  t
+ mac-command-modifier 'meta
+ js-indent-level 2
+ json-reformat:indent-width 2
+ css-indent-offset 2
+ org-ellipsis " ▾ "
+ org-capture-templates '(("x" "Note" entry
+                          (file+olp+datetree "~/org/journal.org")
+                          "**** [ ] %U %?" :prepend t :kill-buffer t)
+                         ("t" "Task" entry
+                          (file+headline "~/org/tasks.org" "Inbox")
+                          "* [ ] %?\n%i" :prepend t :kill-buffer t))
+ +org-capture-todo-file "~/org/tasks.org")
+
+;; (after! org
+;;   (setq org-agenda-files (list "~/org/tasks.org"
+;;                                "~/org/notes.org"
+;;                                "~/org/todo.org")))

@@ -10,14 +10,14 @@ endfunction
 " Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
-Plug 'timburgess/extempore.vim'
+" Plug 'timburgess/extempore.vim'
 Plug 'mhinz/vim-mix-format'
-Plug 'munshkr/vim-tidal'
+" Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+" Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'rizzatti/dash.vim'
 " Plug 'sbl/scvim'
 Plug 'davidgranstrom/scnvim'
@@ -289,6 +289,7 @@ endfunction
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " OF setup : run make runRelease
-autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
+" autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
 
 " ============================== END ===================================
+"
