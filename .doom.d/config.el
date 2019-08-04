@@ -7,12 +7,8 @@
 
 ;; Load the theme
 ;; (load-theme 'doom-spacegrey t)
-;; (load-theme 'doom-opera t)
-;; (load-theme 'doom-opera-light t)
-;; (load-theme 'doom-gruvbox t)
-;; (load-theme 'doom-solarized-light t)
-(load-theme 'doom-nord t)
 ;; (load-theme 'doom-nord-light t)
+(load-theme 'doom-nord t)
 
 ;; Alt key
 (setq ns-alternate-modifier 'none)
@@ -84,16 +80,6 @@
  js-indent-level 2
  json-reformat:indent-width 2
  css-indent-offset 2
+ projectile-project-search-path '("~/Documents/Kode/")
  org-ellipsis " ▾ "
- org-capture-templates '(("x" "Note" entry
-                          (file+olp+datetree "~/org/journal.org")
-                          "**** [ ] %U %?" :prepend t :kill-buffer t)
-                         ("t" "Task" entry
-                          (file+headline "~/org/tasks.org" "Inbox")
-                          "* [ ] %?\n%i" :prepend t :kill-buffer t))
- +org-capture-todo-file "~/org/tasks.org")
-
-;; (after! org
-;;   (setq org-agenda-files (list "~/org/tasks.org"
-;;                                "~/org/notes.org"
-;;                                "~/org/todo.org")))
+ )
