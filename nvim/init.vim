@@ -7,21 +7,18 @@ function! DoRemote(arg)
 endfunction
 
 "" Language Support
-" Plug 'bfrg/vim-cpp-modern'
+Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
-" Plug 'timburgess/extempore.vim'
 Plug 'mhinz/vim-mix-format'
-" Plug 'munshkr/vim-tidal'
 Plug 'pangloss/vim-javascript'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-" Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'rizzatti/dash.vim'
-" Plug 'sbl/scvim'
 Plug 'davidgranstrom/scnvim'
 Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
 
 " Navigation
@@ -29,36 +26,40 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " Editing
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
+Plug 'thaerkh/vim-indentguides'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 
-" Vim, Tmux, and Airline theming
+" Theming
 Plug 'arcticicestudio/nord-vim'
-" Plug 'trevordmiller/nova-vim'
-Plug 'vim-airline/vim-airline'
-
+Plug 'itchyny/lightline.vim'
+"
 " Tasks Running 
 Plug 'w0rp/ale'
 
 " Git
 Plug 'tpope/vim-fugitive'
 
+" CoC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 " }}}
 
-" Colors/Theme {{{
+" Themes
 set background=dark
+syntax on
 colorscheme nord
-" colorscheme nova
-" }}}
+let g:lightline = { 'colorscheme': 'nord' }
 
 " ============================== FZF/RIPGREP
 set rtp+=/usr/local/opt/fzf
@@ -78,31 +79,28 @@ let g:ale_enabled = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
 
-" ============================== POWERLINE
-let g:airline_powerline_fonts = 1
-
-" ============================== PYTHON
-
 " ============================== STATUS LINE ==============================
 function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
-endfunction
-set statusline=
-set statusline=%#Question#
-set statusline+=%{LinterStatus()}
-set statusline+=%#StatusLineNC#
-set statusline+=[%n]\ %f\ %m%r
-set statusline+=%=[line:\ %l/%L][col:\ %03c]
+   let l:counts = ale#statusline#Count(bufnr(''))
+   return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
+ endfunction
+ set statusline=
+ set statusline=%#Question#
+ set statusline+=%{LinterStatus()}
+ set statusline+=%#StatusLineNC#
+ set statusline+=[%n]\ %f\ %m%r
+ set statusline+=%=[line:\ %l/%L][col:\ %03c]
+ set statusline^=%{coc#status()}
 
-" ============================== SETTINGS ==============================
+ " ============================== SETTINGS ==============================
 set autoindent
 set autoread
-set background=dark
 set backspace=indent,eol,start
 set clipboard^=unnamedplus
 set colorcolumn=120
-set cursorcolumn
+" macos clipboard sharing
+set clipboard=unnamed 
+" set cursorcolumn
 set cursorline
 set expandtab
 "" remove all scrollbars
@@ -119,18 +117,23 @@ set nobackup
 set noswapfile
 set noshowmode
 set number relativenumber
-" set path+=src
+" treat all numerals as decimals
+set nrformats=
+" hybrid line numbers
+set number relativenumber
+set ruler
 set shell=zsh
 set shiftwidth=2
 set showtabline=0
 set softtabstop=2
 set spelllang=en_us
-" set spellfile=~/Dropbox/vimspell/en.utf-8.add
 set splitbelow splitright
+set termguicolors
 set timeoutlen=2000
 set ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list,full
+
 " reload changed file on focus, buffer enter
 " helps if file was changed externally.
 augroup ReloadGroup
@@ -141,7 +144,6 @@ augroup END
 " =========== cursorline
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
-set cursorline
 
 " =========== SuperCollider SCVim
 " vertical 'v' or horizontal 'h' split
@@ -156,7 +158,6 @@ let g:scnvim_postwin_orientation = 'h'
 " automatically open post window on a SuperCollider error
 let g:scnvim_postwin_auto_toggle = 1
 
-
 " duration of the highlight
 let g:scnvim_eval_flash_duration = 100
 
@@ -170,6 +171,10 @@ highlight SCNvimEval guifg=black guibg=white ctermfg=black ctermbg=white
 " Stop vim-polyglot from loading for TeX, using vimtex instead
 let g:polyglot_disabled = ['latex']
 
+" set completeopt=menu,menuone,noinsert,noselect
+
+" no bullet indent stuff
+let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
 " ============================== MAPPINGS ==============================
 let mapleader = " "
 
@@ -178,6 +183,8 @@ nnoremap ,d :bd<CR>
 " close all buffers
 nnoremap ,D :%bd<CR>
 
+" nerdtree
+nnoremap ,nt :NERDTreeToggle<CR>
 " vert split
 nnoremap ,v :vs<CR>
 
@@ -291,5 +298,10 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " OF setup : run make runRelease
 " autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
 
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 " ============================== END ===================================
 "

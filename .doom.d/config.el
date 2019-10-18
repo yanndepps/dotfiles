@@ -9,6 +9,7 @@
 ;; (load-theme 'doom-spacegrey t)
 ;; (load-theme 'doom-nord-light t)
 (load-theme 'doom-nord t)
+;; (load-theme 'doom-gruvbox t)
 
 ;; Alt key
 (setq ns-alternate-modifier 'none)
@@ -70,12 +71,22 @@
   )
 
 
+;; (def-package! org-fancy-priorities
+;;   :hook (org-mode . org-fancy-priorities-mode)
+;;   :config
+;;   (setq org-fancy-priorities-list '((?A . "⚡")
+;;                                     (?B . "⚡")
+;;                                     (?C . "⚡"))))
+
 (setq
  web-mode-markup-indent-offset 2
  web-mode-code-indent-offset 2
  web-mode-css-indent-offset 2
  org-agenda-skip-scheduled-if-done t
  org-agenda-skip-deadline-if-done  t
+ org-priority-faces '((65 :foreground "#e45649")
+                      (66 :foreground "#da8548")
+                      (67 :foreground "#0098dd"))
  mac-command-modifier 'meta
  js-indent-level 2
  json-reformat:indent-width 2
