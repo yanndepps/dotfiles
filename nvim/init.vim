@@ -145,7 +145,7 @@ augroup END
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
 
-" =========== SuperCollider SCVim
+" =========== SuperCollider SCNvim
 " vertical 'v' or horizontal 'h' split
 let g:scnvim_postwin_orientation = 'h'
 
@@ -175,6 +175,7 @@ let g:polyglot_disabled = ['latex']
 
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
+
 " ============================== MAPPINGS ==============================
 let mapleader = " "
 

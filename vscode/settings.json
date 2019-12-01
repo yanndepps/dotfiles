@@ -1,0 +1,29 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Hack",
+    "workbench.colorTheme": "Nord",
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    "workbench.activityBar.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.sideBar.location": "right",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "workbench.iconTheme": "city-lights-icons-vsc",
+    "editor.wordWrap": "on",
+    "emmet.triggerExpansionOnTab": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "javascript.implicitProjectConfig.checkJs": true,
+    "files.associations": {
+        "*.tidal": "haskell"
+    },
+    "tidalcycles.sounds.paths": [
+        "/Users/yanndepps/Documents/Musik/samplz/Dirts"
+    ]
+}

@@ -34,6 +34,11 @@
 (setenv "PATH" (concat (getenv "PATH") ":/Applications/SuperCollider.app/Contents/MacOS"))
 (setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
 
+;; TidalCycles
+;; (setq load-path (cons "~/tidal/" load-path))
+(setq load-path (cons "~/tidal" load-path))
+(setq tidal-interpreter "/usr/local/bin/ghci")
+
 ;; Enable flashing mode-line on errors
 ;; (doom-themes-visual-bell-config)
 
@@ -67,8 +72,8 @@
                                   (:name "Big Outcomes"
                                          :tag "bo")))
   :config
-  (org-super-agenda-mode)
-  )
+  (org-super-agenda-mode))
+
 
 
 ;; (def-package! org-fancy-priorities
@@ -92,5 +97,9 @@
  json-reformat:indent-width 2
  css-indent-offset 2
  projectile-project-search-path '("~/Documents/Kode/")
- org-ellipsis " ▾ "
- )
+ org-ellipsis " ▾ ")
+
+
+;; start Pipenv
+;; (use-package! pipenv
+  ;; :hook (python-mode . pipenv-activate))
