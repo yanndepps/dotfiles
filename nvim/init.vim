@@ -9,7 +9,7 @@ endfunction
 "" Language Support
 Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'pangloss/vim-javascript'
 Plug 'leshill/vim-json'
@@ -20,6 +20,7 @@ Plug 'davidgranstrom/scnvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
+Plug 'tidalcycles/vim-tidal'
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -166,6 +167,9 @@ let g:scnvim_eval_flash_repeats = 2
 
 " configure the color
 highlight SCNvimEval guifg=black guibg=white ctermfg=black ctermbg=white
+
+" Tidal Terminal
+let g:tidal_target = "terminal"
 
 " =========== Polyglot-LaTeX
 " Stop vim-polyglot from loading for TeX, using vimtex instead
