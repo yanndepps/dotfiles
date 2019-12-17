@@ -55,6 +55,9 @@
 (load! "+ranger") ;; file manager stuff
 
 ;; Zaiste setup
+(after! org
+  (setq org-bullets-bullet-list '("∵")))
+
 (def-package! org-super-agenda
   :after org-agenda
   :init
