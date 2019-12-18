@@ -1,31 +1,27 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/Users/yanndepps/Library/Python/3.7/bin:$PATH
 
-# Activate Python3 virtualenv
-alias ct3="source /Users/yanndepps/CTrain_VENV/bin/activate"
-alias ct2="source /Users/yanndepps/CTrainp2_VENV/bin/activate"
+# Node
+# export PATH="/usr/local/bin/npm:/usr/local/bin/node:/usr/local/bin:$PATH"
+# export PATH=$PATH:prefix/bin
+# export NODE_PATH="/usr/local/lib/node_modules"
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/yanndepps/.oh-my-zsh"
 
+ZSH_THEME="spaceship"
+
+# export SPACESHIP_VI_MODE_NORMAL=‡
+# export SPACESHIP_VI_MODE_INSERT=…
+export SPACESHIP_PROMPT_SEPARATE_LINE=false
+export SPACESHIP_DIR_TRUNC=1
+
 # Path to DOOM-EMACS
 export PATH=~/.emacs.d/bin:$PATH
 
-# Path to OF
-OF_ROOT="/Users/yanndepps/Documents/of_v0.10.0_osx_release"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# LSP
+export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -41,7 +37,7 @@ DISABLE_AUTO_UPDATE="true"
 export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
@@ -80,44 +76,28 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# vim shit
+export VISUAL=nvim
+export EDITOR=nvim
+# alias vim="nvim"
+# alias vi="nvim"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# vim binding shit
+bindkey -v 
+bindkey '^R' history-incremental-search-backward
+bindkey '^P' up-history
+bindkey '^N' down-history
+export KEYTIMEOUT=1
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# fzf shit
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # do i need this?
+export FZF_DEFAULT_COMMAND="rg --files --follow --hidden"
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# more shit
 
 source "/Users/yanndepps/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc...
-# --hidden: Search hidden files and folders
-# --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-# export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LANG=en_US.UTF-8
