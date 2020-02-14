@@ -8,3 +8,4 @@
 (package! tidal)
 ;; (package! org-brain)
 ;; (package! org-fancy-priorities)
+(package! ccls :disable t)

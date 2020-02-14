@@ -23,6 +23,11 @@
 
 (add-to-list 'default-frame-alist
              '(ns-appearance . dark))
+
+;; Transparency
+;; (set-frame-parameter (selected-frame) 'alpha '(85 60))
+;; (add-to-list 'default-frame-alist '(alpha 85 60))
+
 ;; Processing
 (setq processing-location "/usr/local/bin/processing-java")
 (setq processing-application-dir "/Applications/Processing.app")
