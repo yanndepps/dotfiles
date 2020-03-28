@@ -9,3 +9,7 @@
 ;; (package! org-brain)
 ;; (package! org-fancy-priorities)
 (package! ccls :disable t)
+(package! fill-column-indicator)
+(package! highlight-indent-guides)
+(package! typescript-mode)
+(package! web-mode)
