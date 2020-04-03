@@ -7,19 +7,20 @@ function! DoRemote(arg)
 endfunction
 
 "" Language Support
-Plug 'bfrg/vim-cpp-modern'
+" Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
 Plug 'pangloss/vim-javascript'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim'
-Plug 'davidgranstrom/scnvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
+Plug 'davidgranstrom/scnvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tidalcycles/vim-tidal'
 
 " Navigation
@@ -28,6 +29,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'vifm/vifm.vim'
 
 " Editing
 Plug 'christoomey/vim-sort-motion'
@@ -40,18 +42,26 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 
+" Snippets
+" Plug 'sirver/ultisnips'
+" Plug 'honza/vim-snippets'
+
 " Theming
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-"
+
 " Tasks Running 
 Plug 'w0rp/ale'
 
 " Git
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Wiki
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 " }}}
@@ -61,6 +71,7 @@ set background=dark
 syntax on
 colorscheme nord
 let g:lightline = { 'colorscheme': 'nord' }
+
 
 " ============================== FZF/RIPGREP
 set rtp+=/usr/local/opt/fzf
@@ -248,6 +259,13 @@ nnoremap ,da :Dash<CR>
 " exit terminal
 tnoremap <Esc> <C-\><C-n>
 
+" vifm 
+map <Leader>vv :Vifm<CR>
+map <Leader>vs :VsplitVifm<CR>
+map <Leader>sp :SplitVifm<CR>
+map <Leader>dv :DiffVifm<CR>
+map <Leader>tv :TabVifm<CR>
+
 " non-leader mappings ==========
 
 " run make
@@ -303,10 +321,13 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " OF setup : run make runRelease
 " autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
+
+" OF autocomplete
+" let g:gutentags_project_root = ['.gutctags']
+" let g:gutentags_add_default_project_roots = 0
 " ============================== END ===================================
-"
