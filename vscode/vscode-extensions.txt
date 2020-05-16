@@ -1,0 +1,31 @@
+$cmd = "code --list-extensions"
+
+//-------
+
+arcticicestudio.nord-visual-studio-code
+bierner.comment-tagged-templates
+circledev.glsl-canvas
+CoenraadS.bracket-pair-colorizer
+Equinusocio.vsc-community-material-theme
+Equinusocio.vsc-material-theme
+equinusocio.vsc-material-theme-icons
+esbenp.prettier-vscode
+extemporelang.vscode-extempore
+formulahendry.auto-rename-tag
+JamesBirtles.svelte-vscode
+justusadam.language-haskell
+PKief.material-icon-theme
+ritwickdey.live-sass
+ritwickdey.LiveServer
+slevesque.shader
+tidalcycles.vscode-tidalcycles
+Tobiah.language-pde
+vscodevim.vim
+xabikos.JavaScriptSnippets
+Yummygum.city-lights-icon-vsc
+
+//-------
+
+while read line; do code --install-extension "$line";done < vscode-extensions.txt
+
+//-------
