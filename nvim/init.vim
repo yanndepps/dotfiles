@@ -115,8 +115,10 @@ set clipboard=unnamed
 " set cursorcolumn
 set cursorline
 set expandtab
-"" remove all scrollbars
+" remove all scrollbars
 set guioptions=
+" folds
+set foldmethod=manual
 set hidden
 set hlsearch
 set ignorecase
@@ -190,6 +192,9 @@ let g:polyglot_disabled = ['latex']
 
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
+
+" vimwiki manual
+" let g:manual='list'
 
 " ============================== MAPPINGS ==============================
 let mapleader = " "
@@ -330,4 +335,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " OF autocomplete
 " let g:gutentags_project_root = ['.gutctags']
 " let g:gutentags_add_default_project_roots = 0
+" folds on save 
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
 " ============================== END ===================================
