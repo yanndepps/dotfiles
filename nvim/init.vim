@@ -193,8 +193,9 @@ let g:polyglot_disabled = ['latex']
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
 
-" vimwiki manual
+" vimwiki
 " let g:manual='list'
+let g:vimwiki_listsyms = '✗○◐●✓'
 
 " ============================== MAPPINGS ==============================
 let mapleader = " "
@@ -335,6 +336,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " OF autocomplete
 " let g:gutentags_project_root = ['.gutctags']
 " let g:gutentags_add_default_project_roots = 0
+
 " folds on save 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
