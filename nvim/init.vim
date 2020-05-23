@@ -7,7 +7,7 @@ function! DoRemote(arg)
 endfunction
 
 "" Language Support
-" Plug 'bfrg/vim-cpp-modern'
+Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
@@ -45,6 +45,8 @@ Plug 'tpope/vim-surround'
 " Snippets
 " Plug 'sirver/ultisnips'
 " Plug 'honza/vim-snippets'
+" Tagbar
+Plug 'majutsushi/tagbar'
 
 " Theming
 Plug 'arcticicestudio/nord-vim'
@@ -250,6 +252,9 @@ nnoremap ,sa ggVG
 nmap <Space>o <Plug>(scnvim-postwindow-toggle)
 nmap <Space>l <Plug>(scnvim-postwindow-clear)
 
+" toggle tagbar
+nmap <F8> :TagbarToggle<CR>
+
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
 " nmap <leader>d <Plug>(ale_fix)
@@ -325,7 +330,7 @@ endfunction
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " OF setup : run make runRelease
-" autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
+autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
 
 " augroup numbertoggle
 "   autocmd!
@@ -334,10 +339,10 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " augroup END
 
 " OF autocomplete
-" let g:gutentags_project_root = ['.gutctags']
-" let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['.gutctags']
+let g:gutentags_add_default_project_roots = 0
 
 " folds on save 
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview 
 " ============================== END ===================================

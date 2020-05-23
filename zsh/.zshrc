@@ -12,8 +12,8 @@ export ZSH="/Users/yanndepps/.oh-my-zsh"
 
 ZSH_THEME="spaceship"
 
-# export SPACESHIP_VI_MODE_NORMAL=‡
-# export SPACESHIP_VI_MODE_INSERT=…
+# export SPACESHIP_VI_MODE_NORMAL=›
+# export SPACESHIP_VI_MODE_INSERT=»
 export SPACESHIP_PROMPT_SEPARATE_LINE=false
 export SPACESHIP_DIR_TRUNC=1
 
@@ -22,6 +22,9 @@ export PATH=~/.emacs.d/bin:$PATH
 
 # LSP
 export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
+
+# OF
+OF_ROOT=/Users/yanndepps/Documents/Kode/OF
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -79,11 +82,9 @@ source $ZSH/oh-my-zsh.sh
 # vim shit
 export VISUAL=nvim
 export EDITOR=nvim
-# alias vim="nvim"
-# alias vi="nvim"
 
 # vim binding shit
-bindkey -v 
+# bindkey -v 
 bindkey '^R' history-incremental-search-backward
 bindkey '^P' up-history
 bindkey '^N' down-history
