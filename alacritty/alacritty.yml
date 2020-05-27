@@ -74,6 +74,7 @@ cursor:
   style: Block
   unfocused_hollow: true
 
-key_bindings:
-  - { key: N, mods: Control, action: SpawnNewInstance }
+alt_send_esc: false
 
+key_bindings:
+  - { key: N,           mods: Control,        action: SpawnNewInstance           }
