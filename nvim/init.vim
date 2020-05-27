@@ -111,7 +111,7 @@ set autoindent
 set autoread
 set backspace=indent,eol,start
 set clipboard^=unnamedplus
-set colorcolumn=120
+" set colorcolumn=120
 " macos clipboard sharing
 set clipboard=unnamed 
 " set cursorcolumn
@@ -142,7 +142,8 @@ set shell=zsh
 set shiftwidth=2
 set showtabline=0
 set softtabstop=2
-set spelllang=en_us
+" set spell
+set spelllang=en_us,fr
 set splitbelow splitright
 set termguicolors
 set timeoutlen=2000
@@ -345,4 +346,9 @@ let g:gutentags_add_default_project_roots = 0
 " folds on save 
 " autocmd BufWinLeave *.* mkview
 " autocmd BufWinEnter *.* silent loadview 
+
+" fix transparent background in Vim/ Neovim: 
+hi! Normal ctermbg=NONE guibg=NONE 
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
+
 " ============================== END ===================================
