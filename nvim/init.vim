@@ -20,7 +20,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
-Plug 'davidgranstrom/scnvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 Plug 'tidalcycles/vim-tidal'
 
 " Navigation
@@ -56,14 +56,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 
 " Git
-" Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Wiki
 Plug 'vimwiki/vimwiki'
+
+" Autocomplete SuperCollider
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 " }}}
@@ -73,7 +75,6 @@ set background=dark
 syntax on
 colorscheme nord
 let g:lightline = { 'colorscheme': 'nord' }
-
 
 " ============================== FZF/RIPGREP
 set rtp+=/usr/local/opt/fzf
@@ -162,28 +163,89 @@ augroup END
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
 
-" =========== SuperCollider SCNvim
-" vertical 'v' or horizontal 'h' split
-let g:scnvim_postwin_orientation = 'h'
+" ============================== SuperCollider ==============================
+" get information about git and server status in your statusline
+function! s:startSCNvim()
+    let g:lightline = { 'colorscheme': 'nord' }
+    let g:lightline.component_function = {
+                \ 'server_status': 'scnvim#statusline#server_status',
+                \ 'gitbranch': 'FugitiveHead'
+                \ }
 
-" position of the post window 'right' or 'left'
-" let g:scnvim_postwin_direction = 'right'
+    function! s:set_sclang_lightline_stl()
+        let g:lightline.active = {
+                    \ 'left':  [ [ 'mode', 'paste' ],
+                    \          [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+                    \ 'right': [ [ 'lineinfo' ],
+                    \            [ 'percent' ],
+                    \            [ 'server_status'] ]
+                    \ }
+    endfunction 
+    call s:set_sclang_lightline_stl()
 
-" default is half the terminal size for vertical and a third for horizontal
-" let g:scnvim_postwin_size = 25
+" whenever you hit <cr> you will toggle the post window
+    let g:scnvim_postwin_auto_toggle = 1
+    " make sure the post window doesn't eat half your window
+    let g:scnvim_postwin_size = 50 
+    " and wrap the output to make it easier to read
+    autocmd FileType scnvim setlocal wrap 
+    " vertical 'v' or horizontal 'h' split
+    let g:scnvim_postwin_orientation = 'v'
 
-" automatically open post window on a SuperCollider error
-let g:scnvim_postwin_auto_toggle = 1
+    " automatically open post window on a SuperCollider error
+    let g:scnvim_postwin_auto_toggle = 1
 
-" duration of the highlight
-let g:scnvim_eval_flash_duration = 100
+    " duration of the highlight
+    let g:scnvim_eval_flash_duration = 100
 
-" number of flashes. A value of 0 disables this feature.
-let g:scnvim_eval_flash_repeats = 2
+    " number of flashes. A value of 0 disables this feature.
+    let g:scnvim_eval_flash_repeats = 2
 
-" configure the color
-highlight SCNvimEval guifg=black guibg=white ctermfg=black ctermbg=white
+    " configure the color
+    highlight SCNvimEval guifg=black guibg=white ctermfg=black ctermbg=white
 
+    " position of the post window 'right' or 'left'
+    let g:scnvim_postwin_direction = 'right'
+
+    " enable sc-help right in your nvim session!
+    let g:scnvim_scdoc = 1 
+    " ensure that your comments look good
+    setlocal commentstring=//%s
+
+    " map your function keys to useful functions
+    nnoremap <F2> :SCNvimStart<cr>
+    nnoremap <F4> :SCNvimRecompile<cr>
+
+    " see what the server is doing
+    nnoremap <silent><buffer> <F5> :call scnvim#sclang#send('s.plotTree')<CR>
+    nnoremap <silent><buffer> <F6> :call scnvim#sclang#send('s.meter')<CR>
+
+    " record output of the default server to 
+    " ~/sc-rec/<name-of-current-document>/<timestamp>.wav
+    nnoremap <silent><buffer> <F7> :call scnvim#sclang#send('s.record("~/sc-rec"+/+PathName(thisProcess.nowExecutingPath).fileNameWithoutExtension+/+Date.localtime.stamp++".wav")')<CR>
+    " stop recording
+    nnoremap <silent><buffer> <F8> :call scnvim#sclang#send('s.stopRecording')<CR>
+
+    " remap supercollider post window toggle
+    nmap <Space>o <Plug>(scnvim-postwindow-toggle)
+    nmap <Space>l <Plug>(scnvim-postwindow-clear)
+
+    " include your supercollider project root in nvim's search path
+    set path+="~/sc-rec"
+
+    " make sure argument lists are properly closed when using auto-pairs
+    let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '|':'|'}
+
+    " make sure deoplete starts up to enable autocompletion of code 
+    let g:deoplete#enable_at_startup = 1
+
+endfunction 
+" finally, call the function whenever a SuperCollider file opens up
+augroup sclang
+    autocmd FileType supercollider call s:startSCNvim()
+augroup end
+
+" =========== Tidal
 " Tidal Terminal
 let g:tidal_target = "terminal"
 
@@ -249,16 +311,13 @@ nnoremap ,hh :noh<CR>
 " select all
 nnoremap ,sa ggVG
 
-" remap supercollider post window toggle
-nmap <Space>o <Plug>(scnvim-postwindow-toggle)
-nmap <Space>l <Plug>(scnvim-postwindow-clear)
-
 " toggle tagbar
 nmap <F8> :TagbarToggle<CR>
 
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
 " nmap <leader>d <Plug>(ale_fix)
+
 " kill all windows but current
 nnoremap ,x :only<CR>
 
