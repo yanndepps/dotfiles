@@ -1,0 +1,28 @@
+{
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "Markdown"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  "diagnostic.enable": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+
+  "prettier.singleQuote": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": false,
+  "prettier.disableSuccessMessage": true,
+  "suggest.removeDuplicateItems": true
+}

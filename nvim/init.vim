@@ -7,11 +7,18 @@ function! DoRemote(arg)
 endfunction
 
 "" Language Support
-Plug 'bfrg/vim-cpp-modern'
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-mix-format'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+" ReactJS JSX syntax highlighting
+Plug 'mxw/vim-jsx'
+" Generate JSDoc commands based on function signature
+" Syntax highlighting for javascript libraries
+Plug 'othree/javascript-libraries-syntax.vim'
+" Improved syntax highlighting and indentation
+Plug 'othree/yajs.vim'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -42,24 +49,23 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 
-" Snippets
-" Plug 'sirver/ultisnips'
-" Plug 'honza/vim-snippets'
-" Tagbar
-Plug 'majutsushi/tagbar'
-
-" Theming
+" Colorsheme
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 
 " Tasks Running 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Git
 Plug 'tpope/vim-fugitive'
+" Enable git changes to be shown in sign column
+Plug 'mhinz/vim-signify'
 
-" CoC
+" CoC Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Denite - Fuzzy finding, buffer management
+" Plug 'Shougo/denite.nvim'
 
 " Wiki
 Plug 'vimwiki/vimwiki'
@@ -70,11 +76,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 " }}}
 
-" Themes
-set background=dark
-syntax on
-colorscheme nord
-let g:lightline = { 'colorscheme': 'nord' }
 
 " ============================== FZF/RIPGREP
 set rtp+=/usr/local/opt/fzf
@@ -90,9 +91,9 @@ command! -nargs=* Rg
 
 " ============================== ALE
 " ALEToggle to activate
-let g:ale_enabled = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
+" let g:ale_enabled = 0
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
 
 " ============================== STATUS LINE ==============================
 function! LinterStatus() abort
@@ -162,6 +163,39 @@ augroup END
 " =========== cursorline
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
+
+" ============================== CoC.nvim Setup ==============================
+" use <tab> for trigger completion and navigate to next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+"Close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" === vim-javascript === "
+" Enable syntax highlighting for JSDoc
+let g:javascript_plugin_jsdoc = 1
+
+" Highlight jsx syntax even in non .jsx files
+let g:jsx_ext_required = 0
+
+" === javascript-libraries-syntax === "
+let g:used_javascript_libs = 'underscore,requirejs,react'
+
+" === Signify === "
+let g:signify_sign_delete = '-'
+
+" CoC Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " ============================== SuperCollider ==============================
 " get information about git and server status in your statusline
@@ -311,9 +345,6 @@ nnoremap ,hh :noh<CR>
 " select all
 nnoremap ,sa ggVG
 
-" toggle tagbar
-nmap <F8> :TagbarToggle<CR>
-
 " ALE next error
 " nmap <silent> ,es <Plug>(ale_next_wrap)
 " nmap <leader>d <Plug>(ale_fix)
@@ -337,7 +368,12 @@ map <Leader>sp :SplitVifm<CR>
 map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
 
-" non-leader mappings ==========
+" coc.nvim
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
+" Generate jsdoc for function under cursor
+nmap <leader>z :JsDoc<CR>
 
 " run make
 nnoremap <silent> <F5> :wa<CR>:silent make<CR>
@@ -389,18 +425,11 @@ endfunction
 " markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" OF setup : run make runRelease
-autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi'
-
 " augroup numbertoggle
 "   autocmd!
 "   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 "   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 " augroup END
-
-" OF autocomplete
-let g:gutentags_project_root = ['.gutctags']
-let g:gutentags_add_default_project_roots = 0
 
 " folds on save 
 " autocmd BufWinLeave *.* mkview
@@ -409,5 +438,10 @@ let g:gutentags_add_default_project_roots = 0
 " fix transparent background in Vim/ Neovim: 
 hi! Normal ctermbg=NONE guibg=NONE 
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
+
+set background=dark
+syntax on
+colorscheme nord
+let g:lightline = { 'colorscheme': 'nord' }
 
 " ============================== END ===================================
