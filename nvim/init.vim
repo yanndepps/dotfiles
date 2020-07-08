@@ -164,6 +164,14 @@ augroup END
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
 
+" ============================== Formatters ==================================
+au FileType javascript setlocal formatprg=prettier
+au FileType javascript.jsx setlocal formatprg=prettier
+au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType scss setlocal formatprg=prettier\ --parser\ css
+au FileType css setlocal formatprg=prettier\ --parser\ css
+
 " ============================== CoC.nvim Setup ==============================
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
@@ -192,7 +200,7 @@ let g:used_javascript_libs = 'underscore,requirejs,react'
 " === Signify === "
 let g:signify_sign_delete = '-'
 
-" CoC Prettier
+" ============================== CoC Prettier ==============================
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
