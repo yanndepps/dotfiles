@@ -1,0 +1,29 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.tasks.build"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build"
+  },
+  {
+    "key": "cmd+r",
+    "command": "workbench.action.debug.start",
+    "when": "!inDebugMode"
+  },
+  {
+    "key": "f5",
+    "command": "-workbench.action.debug.start",
+    "when": "!inDebugMode"
+  },
+  {
+    "key": "ctrl+cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  }
+]
