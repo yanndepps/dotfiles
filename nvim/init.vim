@@ -9,9 +9,8 @@ endfunction
 "" Language Support
 Plug 'chun-yang/auto-pairs'
 Plug 'mattn/emmet-vim'
+Plug 'jamshedvesuna/vim-markdown-preview'
 Plug 'mhinz/vim-mix-format'
-" Plug 'pangloss/vim-javascript'
-" ReactJS JSX syntax highlighting
 Plug 'mxw/vim-jsx'
 " Generate JSDoc commands based on function signature
 " Syntax highlighting for javascript libraries
@@ -22,7 +21,6 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
@@ -36,11 +34,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'vifm/vifm.vim'
+" Plug 'vifm/vifm.vim'
 
 " Editing
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'thaerkh/vim-indentguides'
 Plug 'tpope/vim-commentary'
@@ -62,9 +61,6 @@ Plug 'mhinz/vim-signify'
 
 " CoC Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Denite - Fuzzy finding, buffer management
-" Plug 'Shougo/denite.nvim'
 
 " Wiki
 Plug 'vimwiki/vimwiki'
@@ -169,6 +165,9 @@ augroup END
 hi CursorLine ctermfg=NONE ctermbg=NONE
 hi CursorLineNR ctermfg=black ctermbg=yellow
 
+" ============================== Editor Config ===============================
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " ============================== Formatters ==================================
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
@@ -190,6 +189,8 @@ let g:used_javascript_libs = 'underscore,requirejs,react'
 " === Signify === "
 let g:signify_sign_delete = '-'
 
+" return issue 
+" let g:AutoClosePreserveDotReg = 0
 " ============================== CoC ==============================
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -460,11 +461,12 @@ nnoremap ,da :Dash<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " vifm 
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
+" map <Leader>vv :Vifm<CR>
+" map <Leader>vs :VsplitVifm<CR>
+" map <Leader>sp :SplitVifm<CR>
+" map <Leader>dv :DiffVifm<CR>
+" map <Leader>tv :TabVifm<CR>
+
 " Generate jsdoc for function under cursor
 nmap <leader>z :JsDoc<CR>
 

@@ -29,20 +29,20 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; Processing
-(setq processing-location "/usr/local/bin/processing-java")
-(setq processing-application-dir "/Applications/Processing.app")
-(setq processing-sketchbook-dir "~/Documents/Processing")
+;; (setq processing-location "/usr/local/bin/processing-java")
+;; (setq processing-application-dir "/Applications/Processing.app")
+;; (setq processing-sketchbook-dir "~/Documents/Processing")
 
 ;; SuperCollider
-(add-to-list 'load-path "/Users/yanndepps/scsources/scel/el")
+;; (add-to-list 'load-path "/Users/yanndepps/scsources/scel/el")
 ;; (require 'sclang)
-(setenv "PATH" (concat (getenv "PATH") ":/Applications/SuperCollider.app/Contents/MacOS"))
-(setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
+;; (setenv "PATH" (concat (getenv "PATH") ":/Applications/SuperCollider.app/Contents/MacOS"))
+;; (setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
 
 ;; TidalCycles
 ;; (setq load-path (cons "~/tidal/" load-path))
-(setq load-path (cons "~/tidal" load-path))
-(setq tidal-interpreter "/usr/local/bin/ghci")
+;; (setq load-path (cons "~/tidal" load-path))
+;; (setq tidal-interpreter "/usr/local/bin/ghci")
 
 ;; Enable flashing mode-line on errors
 ;; (doom-themes-visual-bell-config)
@@ -57,10 +57,9 @@
 
 ;; Modules
 (load! "+ui") ;; ui mods and ligature stuff
-(load! "+ranger") ;; file manager stuff
-(require 'web-mode)
+;; (load! "+ranger") ;; file manager stuff
 
-;; Zaiste setup
+;; Org stuffs
 (after! org
   (setq org-bullets-bullet-list '("∵")))
 
@@ -112,58 +111,10 @@
 ;; (use-package! pipenv
   ;; :hook (python-mode . pipenv-activate))
 
-;; Web - Typescript
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-tsx)
-            )))
-(defun web-mode-init-hook ()
-  "Hooks for Web mode.  Adjust indent."
-  ;; (tide-setup)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-enable-auto-quoting 2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-attr-indent-offset 2)
-  (setq web-mode-attr-value-indent-offset 2)
-  (setq web-mode-indent-style 2)
-  (setq web-mode-css-indent-offset 2)
-)
-(add-hook 'web-mode-hook  'web-mode-init-hook)
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(setq typescript-indent-level 2)
-
 ;; Treemacs
-;; SPC o p
 (setq treemacs-position 'right)
 
-(after! typescript-mode
-	(add-hook 'typescript-mode-hook #'flycheck-mode)
-	(setq typescript-indent-level 2))
-
-(setq js-indent-level 2
-      js2-basic-offset 2)
-
 (setq display-line-numbers-type 'relative)
-
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq highlight-indent-guides-method 'character)
-(def-package! fill-column-indicator
-  :after-call doom-before-switch-buffer-hook
-  :config
-  (defvar-local company-fci-mode-on-p nil)
-
-  (defun company-turn-off-fci (&rest ignore)
-    (setq company-fci-mode-on-p fci-mode)
-    (when fci-mode (fci-mode -1)))
-
-  (defun company-maybe-turn-on-fci (&rest ignore)
-    (when company-fci-mode-on-p (fci-mode 1)))
-
-  (add-hook 'company-completion-started-hook #'company-turn-off-fci)
-  (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
-  (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
