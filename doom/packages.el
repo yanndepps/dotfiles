@@ -3,5 +3,6 @@
 
 (package! extempore-mode)
 (package! tidal)
+(package! org-superstar)
 ;; (package! processing-mode)
 ;; (package! ranger)

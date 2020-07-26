@@ -25,8 +25,8 @@
              '(ns-appearance . dark))
 
 ;; Transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(85 60))
-;; (add-to-list 'default-frame-alist '(alpha 85 60))
+(set-frame-parameter (selected-frame) 'alpha '(85 60))
+(add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; Processing
 ;; (setq processing-location "/usr/local/bin/processing-java")
@@ -44,67 +44,39 @@
 ;; (setq load-path (cons "~/tidal" load-path))
 ;; (setq tidal-interpreter "/usr/local/bin/ghci")
 
-;; Enable flashing mode-line on errors
-;; (doom-themes-visual-bell-config)
-
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;; (doom-themes-neotree-config)
-;; or for treemacs users
 (doom-themes-treemacs-config)
-
-;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
 ;; Modules
 (load! "+ui") ;; ui mods and ligature stuff
 ;; (load! "+ranger") ;; file manager stuff
 
-;; Org stuffs
-(after! org
-  (setq org-bullets-bullet-list '("∵")))
+(setq org-superstar-headline-bullets-list '("●" "○"))
+(setq org-ellipsis "▼")
+(add-hook 'org-mode-hook #'+org-pretty-mode)
 
-;; (def-package! org-super-agenda
-;;   :after org-agenda
-;;   :init
-;;   (setq org-super-agenda-groups '((:name "Today"
-;;                                          :time-grid t
-;;                                          :scheduled today)
-;;                                   (:name "Due today"
-;;                                          :deadline today)
-;;                                   (:name "Important"
-;;                                          :priority "A")
-;;                                   (:name "Overdue"
-;;                                          :deadline past)
-;;                                   (:name "Due soon"
-;;                                          :deadline future)
-;;                                   (:name "Big Outcomes"
-;;                                          :tag "bo")))
-;;   :config
-;;   (org-super-agenda-mode))
+(setq org-directory "~/.org/")
 
+(setq projectile-project-search-path '("~/Documents/Kode/"))
 
+(setq mac-command-modifier 'meta)
 
-;; (def-package! org-fancy-priorities
-;;   :hook (org-mode . org-fancy-priorities-mode)
-;;   :config
-;;   (setq org-fancy-priorities-list '((?A . "⚡")
-;;                                     (?B . "⚡")
-;;                                     (?C . "⚡"))))
-
-(setq
+;; (setq
  ;; web-mode-markup-indent-offset 2
  ;; web-mode-code-indent-offset 2
- org-agenda-skip-scheduled-if-done t
- org-agenda-skip-deadline-if-done  t
- org-priority-faces '((65 :foreground "#e45649")
-                      (66 :foreground "#da8548")
-                      (67 :foreground "#0098dd"))
- mac-command-modifier 'meta
- js-indent-level 2
- json-reformat:indent-width 2
- css-indent-offset 2
- projectile-project-search-path '("~/Documents/Kode/")
- org-ellipsis " ▾ ")
+ ;; org-agenda-skip-scheduled-if-done t
+ ;; org-agenda-skip-deadline-if-done  t
+ ;; org-priority-faces '((65 :foreground "#e45649")
+                      ;; (66 :foreground "#da8548")
+                      ;; (67 :foreground "#0098dd"))
+ ;; js-indent-level 2
+ ;; json-reformat:indent-width 2
+ ;; css-indent-offset 2
+ ;; projectile-project-search-path '("~/Documents/Kode/")
+ ;; org-bullets-bullet-list '("∵")
+ ;; org-bullets-bullet-list '("·")
+ ;; org-ellipsis " ▾ "
+ ;; )
 
 
 ;; start Pipenv
