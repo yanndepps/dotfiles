@@ -50,34 +50,40 @@
 ;; Modules
 (load! "+ui") ;; ui mods and ligature stuff
 ;; (load! "+ranger") ;; file manager stuff
+(ranger-override-dired-mode t)
 
-(setq org-superstar-headline-bullets-list '("●" "○"))
-(setq org-ellipsis "▼")
+(setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+      org-superstar-prettify-item-bullets t )
+
+;; (setq org-ellipsis "▼")
+
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
-(setq org-directory "~/.org/")
+(after! org
+  (setq org-ellipsis " ▾ "
+        org-priority-highest ?A
+        org-priority-lowest ?E
+        org-priority-faces
+        '((?A . 'all-the-icons-red)
+          (?B . 'all-the-icons-orange)
+          (?C . 'all-the-icons-yellow)
+          (?D . 'all-the-icons-green)
+          (?E . 'all-the-icons-blue))))
+
+
+(setq org-directory "~/Documents/Kode/org/")
 
 (setq projectile-project-search-path '("~/Documents/Kode/"))
 
 (setq mac-command-modifier 'meta)
 
 ;; (setq
- ;; web-mode-markup-indent-offset 2
- ;; web-mode-code-indent-offset 2
- ;; org-agenda-skip-scheduled-if-done t
- ;; org-agenda-skip-deadline-if-done  t
- ;; org-priority-faces '((65 :foreground "#e45649")
-                      ;; (66 :foreground "#da8548")
-                      ;; (67 :foreground "#0098dd"))
- ;; js-indent-level 2
- ;; json-reformat:indent-width 2
- ;; css-indent-offset 2
- ;; projectile-project-search-path '("~/Documents/Kode/")
- ;; org-bullets-bullet-list '("∵")
- ;; org-bullets-bullet-list '("·")
- ;; org-ellipsis " ▾ "
- ;; )
-
+;;  web-mode-markup-indent-offset 2
+;;  web-mode-code-indent-offset 2
+;;  js-indent-level 2
+;;  json-reformat:indent-width 2
+;;  css-indent-offset 2
+;;  )
 
 ;; start Pipenv
 ;; (use-package! pipenv
