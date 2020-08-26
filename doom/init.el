@@ -22,7 +22,9 @@
        (company +childframe)           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +childframe)               ; a search engine for love and life
+       (ivy
+        +icons
+        +prescient)               ; a search engine for love and life
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -33,12 +35,16 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
        indent-guides     ; highlighted indent columns
+       ligatures
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       (popup
+        +all
+        +defaults)   ; tame sudden yet inevitable temporary windows
+
        pretty-code       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
@@ -68,8 +74,8 @@
        (dired +ranger
               +icons)      ; making dired pretty [functional]
        electric            ; smarter, keyword-based electric-indent
-       ibuffer             ; interactive buffer management
-       undo                ; persistent, smarter undo for your inevitable mistakes
+       (ibuffer +icons)             ; interactive buffer management
+       (undo +tree)                ; persistent, smarter undo for your inevitable mistakes
        vc                  ; version-control and Emacs, sitting in a tree
 
        :term
