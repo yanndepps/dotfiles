@@ -35,7 +35,9 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
        indent-guides     ; highlighted indent columns
-       ligatures
+       ;; (ligatures
+        ;; +fira
+        ;; +extra)
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
@@ -45,7 +47,7 @@
         +all
         +defaults)   ; tame sudden yet inevitable temporary windows
 
-       pretty-code       ; ligatures or substitute text with pretty symbols
+       ;; pretty-code       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
@@ -156,6 +158,7 @@
         +export
         +capture
         +pandoc
+        +pretty
         )                  ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
