@@ -59,30 +59,13 @@
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
 
-;; Window title, just the buffer name + project folder
-(setq frame-title-format
-    '(""
-      (:eval
-       (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-           (replace-regexp-in-string ".*/[0-9]*-?" "🢔 " buffer-file-name)
-         "%b"))
-      (:eval
-       (let ((project-name (projectile-project-name)))
-         (unless (string= "-" project-name)
-           (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
-
-;; Do not add package src directories to projectile
-(setq projectile-ignored-projects '("~/" "/tmp" "~/.emacs.d/.local/straight/repos/"))
-(defun projectile-ignored-project-function (filepath)
-  "Return t if FILEPATH is within any of `projectile-ignored-projects'"
-  (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects)))
 
 ;; Company
-(after! company
-  (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
-(add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
+;; (after! company
+;;   (setq company-idle-delay 0.5
+;;         company-minimum-prefix-length 2)
+;;   (setq company-show-numbers t)
+;; (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
 
 ;; History
 (setq-default history-length 1000)
@@ -98,14 +81,17 @@
 (add-to-list 'default-frame-alist
              '(ns-appearance . dark))
 
+(setq ns-use-proxy-icon nil)
+(setq frame-title-format nil)
+
 ;; Transparency
 (set-frame-parameter (selected-frame) 'alpha '(85 60))
 (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; Processing
-;; (setq processing-location "/usr/local/bin/processing-java")
-;; (setq processing-application-dir "/Applications/Processing.app")
-;; (setq processing-sketchbook-dir "~/Documents/Processing")
+(setq processing-location "/usr/local/bin/processing-java")
+(setq processing-application-dir "/Applications/Processing.app")
+(setq processing-sketchbook-dir "~/Documents/Processing")
 
 ;; SuperCollider
 ;; (add-to-list 'load-path "/Users/yanndepps/scsources/scel/el")
@@ -122,7 +108,7 @@
 (doom-themes-org-config)
 
 ;; Modules
-(load! "+ui") ;; ui mods and ligature stuff
+(load! "+ui")
 (ranger-override-dired-mode t)
 
 ;; Org
@@ -261,13 +247,14 @@
   '(require 'ox-gfm nil t))
 
 ;; editorconfig
-;; (use-package editorconfig
-;;   :ensure t
-;;   :config
-;;   (editorconfig-mode 1))
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 
 (setq projectile-project-search-path '("~/Documents/Kode/"))
+
 (setq mac-command-modifier 'meta)
 
 ;; Treemacs
@@ -277,74 +264,17 @@
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
-;; JetBrains Mono Ligatures
-(defun jetbrains-ligature-mode--make-alist (list)
-   "Generate prettify-symbols alist from LIST."
-   (let ((idx -1))
-     (mapcar
-      (lambda (s)
-        (setq idx (1+ idx))
-        (if s
-            (let* ((code (+ #X10001 idx))
-                   (width (string-width s))
-                   (prefix ())
-                   (suffix '(?\s (Br . Br)))
-                   (n 1))
-              (while (< n width)
-                (setq prefix (append prefix '(?\s (Br . Bl))))
-                (setq n (1+ n)))
-              (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
-      list)))
+;; Deft
+(setq deft-directory "~/Documents/Kode/org/"
+      deft-extensions '("org" "txt")
+      deft-recursive t)
 
-(defconst jetbrains-ligature-mode--ligatures
-   '("-->" "//" "/**" "/*" "*/" "<!--" ":=" "->>" "<<-" "->" "<-"
-     "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".."
-     "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
-     "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
-     "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
-     "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
-     "<:" ":<" ":>" ">:" "<>" "***" ";;" "/==" ".=" ".-" "__"
-     "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
-     ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
-     "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
-     "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
-     "<->" "..<" "~=" "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-"
-     "|=" "||=" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#="
-     "&="))
+;; Org Journal
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-prefix "* "
+      org-journal-date-format "%a, %Y-%m-%d"
+      org-journal-file-format "%Y-%m-%d.org")
 
-(dolist (pat jetbrains-ligature-mode--ligatures)
-  (set-char-table-range composition-function-table
-                      (aref pat 0)
-                      (nconc (char-table-range composition-function-table (aref pat 0))
-                             (list (vector (regexp-quote pat)
-                                           0
-                                    'compose-gstring-for-graphic)))))
-
-
-(defvar jetbrains-ligature-mode--old-prettify-alist)
-
-(defun jetbrains-ligature-mode--enable ()
-    "Enable JetBrains Mono ligatures in current buffer."
-    (setq-local jetbrains-ligature-mode--old-prettify-alist prettify-symbols-alist)
-       (setq-local prettify-symbols-alist (append (jetbrains-ligature-mode--make-alist jetbrains-ligature-mode--ligatures) jetbrains-ligature-mode--old-prettify-alist))
-       (prettify-symbols-mode t))
-
-(defun jetbrains-ligature-mode--disable ()
-    "Disable JetBrains Mono ligatures in current buffer."
-    (setq-local prettify-symbols-alist jetbrains-ligature-mode--old-prettify-alist)
-    (prettify-symbols-mode -1))
-
-(define-minor-mode jetbrains-ligature-mode
-    "JetBrains Mono ligatures minor mode"
-    :lighter " JetBrains Mono"
-    (setq-local prettify-symbols-unprettify-at-point 'right-edge)
-    (if jetbrains-ligature-mode
-        (jetbrains-ligature-mode--enable)
-      (jetbrains-ligature-mode--disable)))
-
-(defun jetbrains-ligature-mode--setup ()
-    "Setup JetBrains Mono Symbols"
-    (set-fontset-font t '(#X10001 . #X1009c) "JetBrains Mono"))
-
-(provide 'jetbrains-ligature-mode)
+;; Org Roam
+(setq org-roam-directory "~/Documents/Kode/org/roam/")
 ;; END

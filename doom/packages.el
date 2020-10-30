@@ -6,5 +6,6 @@
 (package! ox-gfm)
 (package! org-super-agenda)
 ;; (package! org-superstar)
-;; (package! processing-mode)
+(package! processing-mode)
+(package! glsl-mode)
 ;; (package! ranger)
