@@ -26,7 +26,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
-Plug 'tidalcycles/vim-tidal'
+" Plug 'tidalcycles/vim-tidal'
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -380,11 +380,11 @@ augroup end
 
 " =========== Tidal
 " Tidal Terminal
-let g:tidal_target = "terminal"
+" let g:tidal_target = "terminal"
 
 " =========== Polyglot-LaTeX
 " Stop vim-polyglot from loading for TeX, using vimtex instead
-let g:polyglot_disabled = ['latex']
+" let g:polyglot_disabled = ['latex']
 
 " set completeopt=menu,menuone,noinsert,noselect
 

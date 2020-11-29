@@ -32,6 +32,11 @@
   (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
+;; Fullscreen
+;; (if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+;;     (toggle-frame-maximized)
+;;   (toggle-frame-fullscreen))
+
 ;; Windows
 ;; which buffer after split
 (setq evil-vsplit-window-right t
@@ -89,15 +94,13 @@
 (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; Processing
-(setq processing-location "/usr/local/bin/processing-java")
-(setq processing-application-dir "/Applications/Processing.app")
-(setq processing-sketchbook-dir "~/Documents/Processing")
+;;(setq processing-location "/usr/local/bin/processing-java")
+;;(setq processing-application-dir "/Applications/Processing.app")
+;;(setq processing-sketchbook-dir "~/Documents/Processing")
 
 ;; SuperCollider
-;; (add-to-list 'load-path "/Users/yanndepps/scsources/scel/el")
-;; (require 'sclang)
-;; (setenv "PATH" (concat (getenv "PATH") ":/Applications/SuperCollider.app/Contents/MacOS"))
-;; (setq exec-path (append exec-path '("/Applications/SuperCollider.app"  "/Applications/SuperCollider.app/Contents/MacOS")))
+(add-to-list 'load-path "~/emacs/scel/")
+(require 'sclang)
 
 ;; TidalCycles
 ;; (setq load-path (cons "~/tidal/" load-path))
