@@ -33,9 +33,9 @@
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
 ;; Fullscreen
-;; (if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
-;;     (toggle-frame-maximized)
-;;   (toggle-frame-fullscreen))
+(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+    (toggle-frame-maximized)
+  (toggle-frame-fullscreen))
 
 ;; Windows
 ;; which buffer after split
@@ -90,28 +90,19 @@
 (setq frame-title-format nil)
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(85 60))
-(add-to-list 'default-frame-alist '(alpha 85 60))
-
-;; Processing
-;;(setq processing-location "/usr/local/bin/processing-java")
-;;(setq processing-application-dir "/Applications/Processing.app")
-;;(setq processing-sketchbook-dir "~/Documents/Processing")
+;; (set-frame-parameter (selected-frame) 'alpha '(85 60))
+;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; SuperCollider
 (add-to-list 'load-path "~/emacs/scel/")
 (require 'sclang)
-
-;; TidalCycles
-;; (setq load-path (cons "~/tidal/" load-path))
-;; (setq load-path (cons "~/tidal" load-path))
-;; (setq tidal-interpreter "/usr/local/bin/ghci")
 
 (doom-themes-treemacs-config)
 (doom-themes-org-config)
 
 ;; Modules
 (load! "+ui")
+(load! "+ranger")
 (ranger-override-dired-mode t)
 
 ;; Org

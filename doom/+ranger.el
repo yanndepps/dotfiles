@@ -1,6 +1,6 @@
 ;;; ~/.doom.d/+ranger.el -*- lexical-binding: t; -*-
 
-(def-package! ranger
+(use-package! ranger
   :commands (ranger deer ranger-override-dired-fn)
   :config)
 (set-popup-rule! "^\\*ranger" :ignore t)
