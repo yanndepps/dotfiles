@@ -8,7 +8,7 @@ endfunction
 
 "" Language Support
 Plug 'chun-yang/auto-pairs'
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'jamshedvesuna/vim-markdown-preview'
 Plug 'mhinz/vim-mix-format'
 Plug 'mxw/vim-jsx'
@@ -49,7 +49,10 @@ Plug 'tpope/vim-surround'
 
 " Colorsheme
 Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhartington/oceanic-next' 
 
 " Tasks Running 
 " Plug 'w0rp/ale'
@@ -299,7 +302,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " ============================== SuperCollider ==============================
 " get information about git and server status in your statusline
 function! s:startSCNvim()
-    let g:lightline = { 'colorscheme': 'nord' }
+    let g:lightline = { 'colorscheme': 'oceanicnext' }
     let g:lightline.component_function = {
                 \ 'server_status': 'scnvim#statusline#server_status',
                 \ 'gitbranch': 'FugitiveHead'
@@ -460,13 +463,6 @@ nnoremap ,da :Dash<CR>
 " exit terminal
 tnoremap <Esc> <C-\><C-n>
 
-" vifm 
-" map <Leader>vv :Vifm<CR>
-" map <Leader>vs :VsplitVifm<CR>
-" map <Leader>sp :SplitVifm<CR>
-" map <Leader>dv :DiffVifm<CR>
-" map <Leader>tv :TabVifm<CR>
-
 " Generate jsdoc for function under cursor
 nmap <leader>z :JsDoc<CR>
 
@@ -536,7 +532,17 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 set background=dark
 syntax on
-colorscheme nord
-let g:lightline = { 'colorscheme': 'nord' }
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" Or if you have Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" colorscheme nord
+
+" let g:lightline = { 'colorscheme': 'nord' }
+colorscheme OceanicNext
+let g:airline_theme='oceanicnext'
+let g:airline_powerline_fonts = 1
 
 " ============================== END ===================================

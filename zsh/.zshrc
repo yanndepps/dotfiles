@@ -27,3 +27,6 @@ export FZF_DEFAULT_COMMAND="rg --files --follow --hidden"
 
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
 # export LANG=en_US.UTF-8
+# starship prompt
+eval "$(starship init zsh)"
+
