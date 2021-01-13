@@ -5,7 +5,9 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-oceanic-next t)
+  (load-theme 'doom-opera t)
+  ;; (load-theme 'doom-oceanic-next t)
+  ;; (load-theme 'doom-nord t)
 
   ;; Enable flashing mode-line on errors
   ;; (doom-themes-visual-bell-config)
@@ -105,8 +107,19 @@
 (add-to-list 'load-path "~/emacs/scel/")
 (require 'sclang)
 
-(doom-themes-treemacs-config)
-(doom-themes-org-config)
+;; Processing
+(setq processing-location "~/processing-3.5.4/processing-java")
+(setq processing-application-dir "~/processing-3.5.4/processing")
+(setq processing-sketchbook-dir "~/sketchbook/")
+;; (setq processing-output-dir "/tmp")
+
+;; ccls
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+
+;; nov.el
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; Modules
 (load! "+ui")

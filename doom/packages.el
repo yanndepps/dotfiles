@@ -2,6 +2,8 @@
 ;;; ~/.doom.d/packages.el
 
 ;; (package! extempore-mode)
+(package! nov)
+(package! processing-mode)
 (package! ox-gfm)
 (package! org-super-agenda)
 ;; (package! org-superstar)

@@ -5,6 +5,9 @@ autoload -Uz compinit; compinit
 # Path to DOOM-EMACS
 export PATH=~/.emacs.d/bin:$PATH
 
+# Path to Processing
+export PATH=~/processing-3.5.4/:$PATH
+
 # LSP
 # export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
 

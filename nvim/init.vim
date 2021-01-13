@@ -25,8 +25,17 @@ Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
+Plug 'tidalcycles/vim-tidal'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
-" Plug 'tidalcycles/vim-tidal'
+
+" Code formatting for c++
+Plug 'ludovicchabant/vim-gutentags'
+" Plug 'vim-scripts/a.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ } 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -34,7 +43,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'vifm/vifm.vim'
 
 " Editing
 Plug 'christoomey/vim-sort-motion'
@@ -65,9 +73,6 @@ Plug 'mhinz/vim-signify'
 " CoC Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Wiki
-Plug 'vimwiki/vimwiki'
-
 " Autocomplete SuperCollider
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -80,6 +85,9 @@ set rtp+=/usr/local/opt/fzf
 
 " ========== files
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+
+" use neovim's own terminal instead of tmux:
+let g:tidal_target = "terminal"
 
 " ========== words
 command! -nargs=* Rg
@@ -94,10 +102,10 @@ command! -nargs=* Rg
 " let g:ale_fixers = {'javascript': ['eslint', 'prettier']}
 
 " ============================== STATUS LINE ==============================
-function! LinterStatus() abort
-   let l:counts = ale#statusline#Count(bufnr(''))
-   return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
- endfunction
+" function! LinterStatus() abort
+"    let l:counts = ale#statusline#Count(bufnr(''))
+"    return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
+"  endfunction
  set statusline=
  set statusline=%#Question#
  set statusline+=%{LinterStatus()}
@@ -192,6 +200,25 @@ let g:used_javascript_libs = 'underscore,requirejs,react'
 " === Signify === "
 let g:signify_sign_delete = '-'
 
+" autocompletion c++
+let g:gutentags_project_root = ['.gutctags']
+let g:gutentags_add_default_project_roots = 0
+
+" lang-client for c++
+let g:LanguageClient_serverCommands = {
+            \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'], 
+            \ }
+
+function LC_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+        nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+        nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    endif
+endfunction
+
+autocmd FileType * call LC_maps()
+
 " return issue 
 " let g:AutoClosePreserveDotReg = 0
 " ============================== CoC ==============================
@@ -238,6 +265,9 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Code formatting ( c++ )
+autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -358,7 +388,7 @@ function! s:startSCNvim()
 
     " record output of the default server to 
     " ~/sc-rec/<name-of-current-document>/<timestamp>.wav
-    nnoremap <silent><buffer> <F7> :call scnvim#sclang#send('s.record("~/sc-rec"+/+PathName(thisProcess.nowExecutingPath).fileNameWithoutExtension+/+Date.localtime.stamp++".wav")')<CR>
+    nnoremap <silent><buffer> <F7> :call scnvim#sclang#send('s.record("~/Musique/Samplz/sc-rec"+/+PathName(thisProcess.nowExecutingPath).fileNameWithoutExtension+/+Date.localtime.stamp++".wav")')<CR>
     " stop recording
     nnoremap <silent><buffer> <F8> :call scnvim#sclang#send('s.stopRecording')<CR>
 
@@ -367,7 +397,7 @@ function! s:startSCNvim()
     nmap <Space>l <Plug>(scnvim-postwindow-clear)
 
     " include your supercollider project root in nvim's search path
-    set path+="~/sc-rec"
+    set path+="~/Musique/Samplz/sc-rec"
 
     " make sure argument lists are properly closed when using auto-pairs
     let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '|':'|'}
@@ -381,22 +411,8 @@ augroup sclang
     autocmd FileType supercollider call s:startSCNvim()
 augroup end
 
-" =========== Tidal
-" Tidal Terminal
-" let g:tidal_target = "terminal"
-
-" =========== Polyglot-LaTeX
-" Stop vim-polyglot from loading for TeX, using vimtex instead
-" let g:polyglot_disabled = ['latex']
-
-" set completeopt=menu,menuone,noinsert,noselect
-
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
-
-" vimwiki
-" let g:manual='list'
-let g:vimwiki_listsyms = '✗○◐●✓'
 
 " ============================== MAPPINGS ==============================
 let mapleader = " "
@@ -516,15 +532,8 @@ endfunction
 " markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
-
-" folds on save 
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview 
+" oF
+autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi' 
 
 " fix transparent background in Vim/ Neovim: 
 hi! Normal ctermbg=NONE guibg=NONE 
@@ -539,7 +548,6 @@ if (has("termguicolors"))
 endif
 
 " colorscheme nord
-
 " let g:lightline = { 'colorscheme': 'nord' }
 colorscheme OceanicNext
 let g:airline_theme='oceanicnext'

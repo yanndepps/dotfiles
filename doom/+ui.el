@@ -7,3 +7,8 @@
 (setq doom-big-font (font-spec :family "JetBrains Mono" :size 14))
 ;; Dash highlighting
 (after! dash (dash-enable-font-lock))
+;; nov.el
+(defun my-nov-font-setup ()
+  (face-remap-add-relative 'variable-pitch :family "JetBrains Mono"
+                                           :size 12))
+(add-hook 'nov-mode-hook 'my-nov-font-setup)
