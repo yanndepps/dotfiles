@@ -292,4 +292,13 @@
 
 ;; Org Roam
 (setq org-roam-directory "~/Documents/Kode/org/roam/")
+
+;; LaTex
+(setq TeX-save-query nil
+      TeX-show-compilation t
+      TeX-command-extra-options "-shell-escape")
+(after! latex
+  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t)))
+
+(setq +latex-viewers '(pdf-tools zathura))
 ;; END
