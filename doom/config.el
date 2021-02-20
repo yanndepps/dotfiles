@@ -21,6 +21,18 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+;; Face
+(setq doom-font (font-spec :family "JetBrains Mono" :size 12 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono") ; inherits `doom-font''s :size
+      doom-unicode-font (font-spec :family "JetBrains Mono" :size 12)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 19))
+
+;; Face nov.el
+(defun my-nov-font-setup ()
+  (face-remap-add-relative 'variable-pitch :family "JetBrains Mono"
+                                           :size 12))
+(add-hook 'nov-mode-hook 'my-nov-font-setup)
+
 ;; Some Defaults
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -43,9 +55,11 @@
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
 ;; Fullscreen
-(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
-    (toggle-frame-maximized)
-  (toggle-frame-fullscreen))
+;;(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+;;    (toggle-frame-maximized)
+;;  (toggle-frame-fullscreen))
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Windows
 ;; which buffer after split
@@ -122,7 +136,7 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; Modules
-(load! "+ui")
+;; (load! "+ui")
 (load! "+ranger")
 (ranger-override-dired-mode t)
 
@@ -268,7 +282,7 @@
   (editorconfig-mode 1))
 
 
-(setq projectile-project-search-path '("~/Documents/Kode/"))
+;; (setq projectile-project-search-path '("~/Documents/Kode/"))
 
 (setq mac-command-modifier 'meta)
 
@@ -301,4 +315,9 @@
   (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t)))
 
 (setq +latex-viewers '(pdf-tools zathura))
+
+;; ---
+;; (setq highlight-indent-guides-auto-enabled nil)
+;; ---
+(setq projectile-files-cache-expire 10)
 ;; END
