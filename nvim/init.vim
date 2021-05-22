@@ -8,16 +8,8 @@ endfunction
 
 "" Language Support
 Plug 'chun-yang/auto-pairs'
-" Plug 'mattn/emmet-vim'
 Plug 'jamshedvesuna/vim-markdown-preview'
 Plug 'mhinz/vim-mix-format'
-Plug 'mxw/vim-jsx'
-" Generate JSDoc commands based on function signature
-" Syntax highlighting for javascript libraries
-Plug 'othree/javascript-libraries-syntax.vim'
-" Improved syntax highlighting and indentation
-Plug 'othree/yajs.vim'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'leshill/vim-json'
 Plug 'reedes/vim-pencil'
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -70,9 +62,6 @@ Plug 'tpope/vim-fugitive'
 " Enable git changes to be shown in sign column
 Plug 'mhinz/vim-signify'
 
-" CoC Intellisense Engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Autocomplete SuperCollider
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -112,7 +101,7 @@ command! -nargs=* Rg
  set statusline+=%#StatusLineNC#
  set statusline+=[%n]\ %f\ %m%r
  set statusline+=%=[line:\ %l/%L][col:\ %03c]
- set statusline^=%{coc#status()}
+ " set statusline^=%{coc#status()}
 
  " ============================== SETTINGS ==============================
 set autoindent
@@ -179,24 +168,6 @@ hi CursorLineNR ctermfg=black ctermbg=yellow
 " ============================== Editor Config ===============================
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" ============================== Formatters ==================================
-au FileType javascript setlocal formatprg=prettier
-au FileType javascript.jsx setlocal formatprg=prettier
-au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
-au FileType scss setlocal formatprg=prettier\ --parser\ css
-au FileType css setlocal formatprg=prettier\ --parser\ css
-
-" === vim-javascript === "
-" Enable syntax highlighting for JSDoc
-let g:javascript_plugin_jsdoc = 1
-
-" Highlight jsx syntax even in non .jsx files
-let g:jsx_ext_required = 0
-
-" === javascript-libraries-syntax === "
-let g:used_javascript_libs = 'underscore,requirejs,react'
-
 " === Signify === "
 let g:signify_sign_delete = '-'
 
@@ -219,38 +190,15 @@ endfunction
 
 autocmd FileType * call LC_maps()
 
-" return issue 
-" let g:AutoClosePreserveDotReg = 0
-" ============================== CoC ==============================
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+augroup c
+    autocmd!
+    autocmd FileType c,cpp,h,hpp,glsl call MakeRun()
+augroup end
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+function! MakeRun()
+    nnoremap <C-e> :terminal make -j8 && make run<cr>
+    inoremap <C-e> <esc>:terminal make -j8 && make run<cr>
 endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -263,72 +211,9 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Code formatting ( c++ )
 autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " ============================== SuperCollider ==============================
 " get information about git and server status in your statusline
 function! s:startSCNvim()
@@ -478,9 +363,6 @@ nnoremap ,da :Dash<CR>
 
 " exit terminal
 tnoremap <Esc> <C-\><C-n>
-
-" Generate jsdoc for function under cursor
-nmap <leader>z :JsDoc<CR>
 
 " run make
 nnoremap <silent> <F5> :wa<CR>:silent make<CR>
