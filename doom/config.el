@@ -59,7 +59,7 @@
 ;;    (toggle-frame-maximized)
 ;;  (toggle-frame-fullscreen))
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Windows
 ;; which buffer after split
@@ -114,8 +114,8 @@
 (setq frame-title-format nil)
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(85 60))
-(add-to-list 'default-frame-alist '(alpha 85 60))
+;; (set-frame-parameter (selected-frame) 'alpha '(85 60))
+;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; SuperCollider
 (add-to-list 'load-path "~/emacs/scel/")
@@ -127,10 +127,18 @@
 (setq processing-sketchbook-dir "~/sketchbook/")
 ;; (setq processing-output-dir "/tmp")
 
-;; ccls
+;; LSP-mode with ccls
 (after! ccls
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
   (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+
+;; LSP-mode with clangd
+;; (setq lsp-clients-clangd-args '("-j=3"
+;;                                 "--background-index"
+;;                                 "--clang-tidy"
+;;                                 "--completion-style=detailed"
+;;                                 "--header-insertion=never"))
+;; (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;; nov.el
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
@@ -305,7 +313,12 @@
       org-journal-file-format "%Y-%m-%d.org")
 
 ;; Org Roam
-(setq org-roam-directory "~/Documents/Kode/org/roam/")
+(setq org-roam-v2-ack t)
+(setq org-roam-directory "~/Documents/Kode/roamNotes")
+(setq org-roam-completion-everywhere t)
+(map! :after evil-org
+      :map evil-org-mode-map
+      :ni [C-M-i] #'completion-at-point)
 
 ;; LaTex
 (setq TeX-save-query nil
@@ -320,4 +333,10 @@
 ;; (setq highlight-indent-guides-auto-enabled nil)
 ;; ---
 (setq projectile-files-cache-expire 10)
+
+;; Python
+
+;; (setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
+;; (setq +python-jupyter-repl-args '("--simple-prompt"))
+
 ;; END

@@ -55,7 +55,7 @@
        (window-select
         +numbers)          ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+       zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere)  ; come to the dark side, we have cookies
@@ -86,8 +86,8 @@
        vterm               ; the best terminal emulation in Emacs
 
        :checkers
-       syntax              ; tasing you for every semicolon you forget
-       ;;spell             ; tasing you for misspelling mispelling
+       ;;syntax              ; tasing you for every semicolon you forget
+       ;;(:if (executable-find "aspell") spell)             ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -99,7 +99,10 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       lookup              ; navigate your code and its documentation
+       lookup
+        ;;+dictionary
+        ;;+offline
+        ;;+docsets)          ; navigate your code and its documentation
        lsp
        ;;macos               ; MacOS-specific commands
        magit               ; a git porcelain for Emacs
@@ -112,6 +115,9 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+
+       :os
+       ;;tty
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -159,7 +165,7 @@
         +pandoc
         +pretty
         +journal
-        +roam
+        +roam2
         )                  ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -181,7 +187,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       (web +lsp)               ; the tubes
+       web               ; the tubes
        ;;yaml              ; JSON, but readable
 
        :email
