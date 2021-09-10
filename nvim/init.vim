@@ -19,9 +19,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sophacles/vim-processing'
 Plug 'tidalcycles/vim-tidal'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
-
 " Code formatting for c++
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-scripts/a.vim'
 " Plug 'vim-scripts/a.vim'
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
@@ -369,6 +369,11 @@ nnoremap <silent> <F5> :wa<CR>:silent make<CR>
 inoremap <silent> <F5> <Esc>:wa<CR>:silent make<CR>
 nnoremap <silent> <F6> :wa<CR>:silent make clean<CR>
 nnoremap <silent> <F7> :wa<CR>:silent make launch<CR>
+
+" new split with alternate file  
+nnoremap mv :AV<cr>
+" switch in same window
+nnoremap ma :A<cr>
 
 " these only get hit by accident
 nnoremap Q <Nop>

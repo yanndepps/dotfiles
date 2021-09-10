@@ -118,13 +118,13 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; SuperCollider
-(add-to-list 'load-path "~/emacs/scel/")
-(require 'sclang)
+;; (add-to-list 'load-path "~/emacs/scel/")
+;; (require 'sclang)
 
 ;; Processing
-(setq processing-location "~/processing-3.5.4/processing-java")
-(setq processing-application-dir "~/processing-3.5.4/processing")
-(setq processing-sketchbook-dir "~/sketchbook/")
+(setq processing-location "~/P5/processing-java")
+(setq processing-application-dir "~/P5/processing")
+(setq processing-sketchbook-dir "~/Documents/Kode/Sketchbook/")
 ;; (setq processing-output-dir "/tmp")
 
 ;; LSP-mode with ccls
@@ -319,6 +319,24 @@
 (map! :after evil-org
       :map evil-org-mode-map
       :ni [C-M-i] #'completion-at-point)
+(setq org-roam-capture-templates
+      '(("d" "default" plain
+         "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("l" "programming languages" plain
+         "* Characteristics\n* Notes%?\n* Tools\n* Ressources\n\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("b" "book notes" plain
+         "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :unnarrowed t)
+        ("p" "project" plain
+         "* Goals\n%?\n\n* Tasks\n** TODO Add initial tasks\n* Dates\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
+         :unnarrowed t)
+        ))
 
 ;; LaTex
 (setq TeX-save-query nil
