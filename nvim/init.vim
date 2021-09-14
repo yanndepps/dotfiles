@@ -65,6 +65,10 @@ Plug 'mhinz/vim-signify'
 " Autocomplete SuperCollider
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+" Reaper
+Plug 'madskjeldgaard/reaper-nvim'
+Plug 'davidgranstrom/osc.nvim'
+
 call plug#end()
 " }}}
 
@@ -77,6 +81,19 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
 " use neovim's own terminal instead of tmux:
 let g:tidal_target = "terminal"
+
+" Which fuzzy finder to use with reaper-nvim: Can be either "fzf" or "skim"
+let g:reaper_fuzzy_command = "fzf"
+
+" Target port of the Reaper session receiving these osc messages
+let g:reaper_target_port = 1234
+
+" Target ip
+let g:reaper_target_ip = "127.0.0.1"
+
+" Browser command used for opening links
+let g:reaper_browser_command = "firefox"
+
 
 " ========== words
 command! -nargs=* Rg
@@ -203,13 +220,13 @@ endfunction
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 " Code formatting ( c++ )
 autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
@@ -298,6 +315,9 @@ augroup end
 
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
+
+" ============================== Reaper ==============================
+autocmd filetype supercollider,tidal,csound,lua lua require'reaper-nvim'.setup()
 
 " ============================== MAPPINGS ==============================
 let mapleader = " "
