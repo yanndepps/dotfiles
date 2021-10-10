@@ -292,7 +292,7 @@
 
 ;; (setq projectile-project-search-path '("~/Documents/Kode/"))
 
-(setq mac-command-modifier 'meta)
+;; (setq mac-command-modifier 'meta)
 
 ;; Treemacs
 (setq treemacs-position 'right)

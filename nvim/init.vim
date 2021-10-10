@@ -118,7 +118,6 @@ command! -nargs=* Rg
  set statusline+=%#StatusLineNC#
  set statusline+=[%n]\ %f\ %m%r
  set statusline+=%=[line:\ %l/%L][col:\ %03c]
- " set statusline^=%{coc#status()}
 
  " ============================== SETTINGS ==============================
 set autoindent
@@ -219,14 +218,6 @@ endfunction
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
 
 " Code formatting ( c++ )
 autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
