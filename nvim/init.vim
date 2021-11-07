@@ -22,12 +22,13 @@ Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 " Code formatting for c++
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-scripts/a.vim'
-" Plug 'vim-scripts/a.vim'
+" GLSL
+Plug 'tikhomirov/vim-glsl'
+
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
             \ 'do': 'bash install.sh',
             \ } 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Navigation
 Plug 'jlanzarotta/bufexplorer'
@@ -68,6 +69,12 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Reaper
 Plug 'madskjeldgaard/reaper-nvim'
 Plug 'davidgranstrom/osc.nvim'
+
+" lilypond
+Plug 'sersorrel/vim-lilypond'
+
+" clang-format
+Plug 'rhysd/vim-clang-format'
 
 call plug#end()
 " }}}
@@ -112,12 +119,12 @@ command! -nargs=* Rg
 "    let l:counts = ale#statusline#Count(bufnr(''))
 "    return l:counts.total == 0 ? '  ✔  ' : printf('  PROBLEMS: %s  ', counts.total)
 "  endfunction
- set statusline=
- set statusline=%#Question#
- set statusline+=%{LinterStatus()}
- set statusline+=%#StatusLineNC#
- set statusline+=[%n]\ %f\ %m%r
- set statusline+=%=[line:\ %l/%L][col:\ %03c]
+" set statusline=
+" set statusline=%#Question#
+" set statusline+=%{LinterStatus()}
+" set statusline+=%#StatusLineNC#
+" set statusline+=[%n]\ %f\ %m%r
+" set statusline+=%=[line:\ %l/%L][col:\ %03c]
 
  " ============================== SETTINGS ==============================
 set autoindent
@@ -222,25 +229,12 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Code formatting ( c++ )
 autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
 
+" Code formatting ( GLSL )
+autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
+
 " ============================== SuperCollider ==============================
 " get information about git and server status in your statusline
 function! s:startSCNvim()
-    let g:lightline = { 'colorscheme': 'oceanicnext' }
-    let g:lightline.component_function = {
-                \ 'server_status': 'scnvim#statusline#server_status',
-                \ 'gitbranch': 'FugitiveHead'
-                \ }
-
-    function! s:set_sclang_lightline_stl()
-        let g:lightline.active = {
-                    \ 'left':  [ [ 'mode', 'paste' ],
-                    \          [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-                    \ 'right': [ [ 'lineinfo' ],
-                    \            [ 'percent' ],
-                    \            [ 'server_status'] ]
-                    \ }
-    endfunction 
-    call s:set_sclang_lightline_stl()
 
 " whenever you hit <cr> you will toggle the post window
     let g:scnvim_postwin_auto_toggle = 1
@@ -406,9 +400,6 @@ nnoremap ,, :Explore .<CR>
 " explore dir of current buffer
 nnoremap - :Explore<CR>
 
-" go to file using index.js if path is dir
-nnoremap gf :call GfIndex('<C-r><C-p>')<CR>
-
 " ============================== COMMANDS ==============================
 
 " turn a snake into a camel
@@ -417,21 +408,28 @@ command! SnakeToCamel normal mmviw:s/\%V_\(.\)/\U\1/g<CR>:nohlsearch<CR>`m
 " turn a camel into a snake
 command! CamelToSnake normal mmviw:s/\%V\(\u\)/_\L\1/g<CR>:nohlsearch<CR>`m
 
-" go to file using index.js if path is dir
-function! GfIndex(filepath)
-  let indexpath = a:filepath . "/index.js"
-  if isdirectory(a:filepath) && filereadable(indexpath)
-    execute "edit" indexpath
-  else
-    execute "edit" a:filepath
-  endif
-endfunction
-
 " markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " oF
-autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi' 
+" autocmd  BufRead,BufNewFile  *.cpp let &makeprg = 'if [ -f Makefile ]; then make Release && make RunRelease; else make Release -C .. && make RunRelease -C ..; fi' 
+
+" ClangFormat
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+" autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+" auto-enabling auto-formatting
+autocmd FileType c ClangFormatAutoEnable
 
 " fix transparent background in Vim/ Neovim: 
 hi! Normal ctermbg=NONE guibg=NONE 
@@ -448,7 +446,9 @@ endif
 " colorscheme nord
 " let g:lightline = { 'colorscheme': 'nord' }
 colorscheme OceanicNext
-let g:airline_theme='oceanicnext'
+" let g:airline_theme='oceanicnext'
+" let g:airline_theme='deus'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 
 " ============================== END ===================================
