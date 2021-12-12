@@ -21,7 +21,8 @@ Plug 'tidalcycles/vim-tidal'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 " Code formatting for c++
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-scripts/a.vim'
+" Plug 'vim-scripts/a.vim'
+
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 
@@ -65,6 +66,7 @@ Plug 'mhinz/vim-signify'
 
 " Autocomplete SuperCollider
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'SirVer/ultisnips'
 
 " Reaper
 Plug 'madskjeldgaard/reaper-nvim'
@@ -298,6 +300,10 @@ augroup sclang
     autocmd FileType supercollider call s:startSCNvim()
 augroup end
 
+" enable snippets support
+let g:scnvim_snippet_format = "ultisnips"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'scnvim-data']
+
 " no bullet indent stuff
 let g:indentguides_toggleListMode = get(g:, 'indentguides_toggleListMode', 0)
 
@@ -369,16 +375,16 @@ nnoremap ,da :Dash<CR>
 " exit terminal
 tnoremap <Esc> <C-\><C-n>
 
-" run make
+" Processing run make
 nnoremap <silent> <F5> :wa<CR>:silent make<CR>
 inoremap <silent> <F5> <Esc>:wa<CR>:silent make<CR>
 nnoremap <silent> <F6> :wa<CR>:silent make clean<CR>
 nnoremap <silent> <F7> :wa<CR>:silent make launch<CR>
 
 " new split with alternate file  
-nnoremap mv :AV<cr>
+" nnoremap mv :AV<cr>
 " switch in same window
-nnoremap ma :A<cr>
+" nnoremap ma :A<cr>
 
 " these only get hit by accident
 nnoremap Q <Nop>
