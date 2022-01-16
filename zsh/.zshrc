@@ -14,6 +14,13 @@ export PATH=~/.emacs.d/bin:$PATH
 # Path to Processing
 export PATH=~/P5/:$PATH
 
+# Path to pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# Path to Zig
+export PATH=$PATH:~/zig
+# export PATH=$PATH:~/zls
+
 # LSP
 # export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
 #
@@ -155,3 +162,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+

@@ -118,8 +118,8 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; SuperCollider
-;; (add-to-list 'load-path "~/emacs/scel/")
-;; (require 'sclang)
+(add-to-list 'load-path "/home/depps/.local/share/SuperCollider/downloaded-quarks/scel/el")
+(require 'sclang)
 
 ;; Processing
 (setq processing-location "~/P5/processing-java")
@@ -352,9 +352,7 @@
 ;; ---
 (setq projectile-files-cache-expire 10)
 
-;; Python
-
-;; (setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
-;; (setq +python-jupyter-repl-args '("--simple-prompt"))
+;; Path to Zig
+;; (setq lsp-zig-zls-executable "~/zls/")
 
 ;; END
