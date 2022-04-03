@@ -55,9 +55,9 @@
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
 ;; Fullscreen
-;;(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
-;;    (toggle-frame-maximized)
-;;  (toggle-frame-fullscreen))
+(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+    ;; (toggle-frame-maximized)
+  (toggle-frame-fullscreen))
 
 ;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
@@ -338,6 +338,10 @@
          :unnarrowed t)
         ))
 
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry "* %<%I:%M %p>: %?"
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+
 ;; LaTex
 (setq TeX-save-query nil
       TeX-show-compilation t
@@ -354,5 +358,8 @@
 
 ;; Path to Zig
 ;; (setq lsp-zig-zls-executable "~/zls/")
+
+;; Path to Guile3
+(setq geiser-guile-binary "/usr/bin/guile3")
 
 ;; END

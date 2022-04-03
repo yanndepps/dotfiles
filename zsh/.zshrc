@@ -15,11 +15,14 @@ export PATH=~/.emacs.d/bin:$PATH
 export PATH=~/P5/:$PATH
 
 # Path to pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+# export PATH="$HOME/.pyenv/bin:$PATH"
 
 # Path to Zig
 export PATH=$PATH:~/zig
 # export PATH=$PATH:~/zls
+
+# Guile3
+export PATH=$PATH:/usr/bin/guile3
 
 # LSP
 # export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
