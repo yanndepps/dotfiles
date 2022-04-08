@@ -9,3 +9,4 @@
 (package! sclang-extensions)
 (package! glsl-mode)
 (package! ranger)
+(package! prisma-mode :recipe (:host github :repo "pimeys/emacs-prisma-mode" :branch "main"))
