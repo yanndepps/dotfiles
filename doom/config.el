@@ -5,7 +5,8 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-opera t)
+  (load-theme 'doom-tomorrow-night t)
+  ;; (load-theme 'doom-opera t)
   ;; (load-theme 'doom-oceanic-next t)
   ;; (load-theme 'doom-nord t)
 
@@ -361,5 +362,8 @@
 
 ;; Path to Guile3
 (setq geiser-guile-binary "/usr/bin/guile3")
+
+;; Lenses
+(setq lsp-lens-enable nil)
 
 ;; END
