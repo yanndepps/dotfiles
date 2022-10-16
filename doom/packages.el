@@ -3,10 +3,10 @@
 
 (package! extempore-mode)
 (package! nov)
-(package! processing-mode)
 (package! ox-gfm)
-(package! org-super-agenda)
 (package! sclang-extensions)
 (package! glsl-mode)
 (package! ranger)
-(package! prisma-mode :recipe (:host github :repo "pimeys/emacs-prisma-mode" :branch "main"))
+(package! denote)
+;; (package! org-super-agenda)
+;; (package! processing-mode)

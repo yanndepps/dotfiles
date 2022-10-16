@@ -123,9 +123,9 @@
 (require 'sclang)
 
 ;; Processing
-(setq processing-location "~/P5/processing-java")
-(setq processing-application-dir "~/P5/processing")
-(setq processing-sketchbook-dir "~/Documents/Kode/Sketchbook/")
+;; (setq processing-location "~/P5/processing-java")
+;; (setq processing-application-dir "~/P5/processing")
+;; (setq processing-sketchbook-dir "~/Documents/Kode/Sketchbook/")
 ;; (setq processing-output-dir "/tmp")
 
 ;; LSP-mode with ccls
@@ -171,93 +171,6 @@
 ;; List bullet sequence
 (setq org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+") ("1." . "a.")))
 
-;; Super Agenda
-(use-package! org-super-agenda
-  :commands (org-super-agenda-mode))
-(after! org-agenda
-  (org-super-agenda-mode))
-
-(setq org-agenda-skip-scheduled-if-done t
-      org-agenda-skip-deadline-if-done t
-      org-agenda-include-deadlines t
-      org-agenda-block-separator nil
-      org-agenda-tags-column 100 ;; from testing this seems to be a good value
-      org-agenda-compact-blocks t)
-
-(setq org-agenda-custom-commands
-      '(("o" "Overview"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '((:name "Today"
-                                :time-grid t
-                                :date today
-                                :todo "TODAY"
-                                :scheduled today
-                                :order 1)))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next to do"
-                                 :todo "NEXT"
-                                 :order 1)
-                          (:name "Important"
-                                 :tag "Important"
-                                 :priority "A"
-                                 :order 6)
-                          (:name "Due Today"
-                                 :deadline today
-                                 :order 2)
-                          (:name "Due Soon"
-                                 :deadline future
-                                 :order 8)
-                          (:name "Overdue"
-                                 :deadline past
-                                 :face error
-                                 :order 7)
-                          (:name "Assignments"
-                                 :tag "Assignment"
-                                 :order 10)
-                          (:name "Issues"
-                                 :tag "Issue"
-                                 :order 12)
-                          (:name "Emacs"
-                                 :tag "Emacs"
-                                 :order 13)
-                          (:name "Projects"
-                                 :tag "Project"
-                                 :order 14)
-                          (:name "Research"
-                                 :tag "Research"
-                                 :order 15)
-                          (:name "To read"
-                                 :tag "Read"
-                                 :order 30)
-                          (:name "Waiting"
-                                 :todo "WAITING"
-                                 :order 20)
-                          (:name "University"
-                                 :tag "uni"
-                                 :order 32)
-                          (:name "Trivial"
-                                 :priority<= "E"
-                                 :tag ("Trivial" "Unimportant")
-                                 :todo ("SOMEDAY" )
-                                 :order 90)
-                          (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
-
-;; Symbols
-(after! org-superstar
-  (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-        org-superstar-prettify-item-bullets t ))
-(after! org
-  (setq org-ellipsis " ▾ "
-        org-priority-highest ?A
-        org-priority-lowest ?E
-        org-priority-faces
-        '((?A . 'all-the-icons-red)
-          (?B . 'all-the-icons-orange)
-          (?C . 'all-the-icons-yellow)
-          (?D . 'all-the-icons-green)
-          (?E . 'all-the-icons-blue))))
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
@@ -314,34 +227,34 @@
       org-journal-file-format "%Y-%m-%d.org")
 
 ;; Org Roam
-(setq org-roam-v2-ack t)
-(setq org-roam-directory "~/Documents/Kode/roamNotes")
-(setq org-roam-completion-everywhere t)
-(map! :after evil-org
-      :map evil-org-mode-map
-      :ni [C-M-i] #'completion-at-point)
-(setq org-roam-capture-templates
-      '(("d" "default" plain
-         "%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-         :unnarrowed t)
-        ("l" "programming languages" plain
-         "* Characteristics\n* Notes%?\n* Tools\n* Ressources\n\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-         :unnarrowed t)
-        ("b" "book notes" plain
-         "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-         :unnarrowed t)
-        ("p" "project" plain
-         "* Goals\n%?\n\n* Tasks\n** TODO Add initial tasks\n* Dates\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
-         :unnarrowed t)
-        ))
+;; (setq org-roam-v2-ack t)
+;; (setq org-roam-directory "~/Documents/Kode/roamNotes")
+;; (setq org-roam-completion-everywhere t)
+;; (map! :after evil-org
+;;       :map evil-org-mode-map
+;;       :ni [C-M-i] #'completion-at-point)
+;; (setq org-roam-capture-templates
+;;       '(("d" "default" plain
+;;          "%?"
+;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+;;          :unnarrowed t)
+;;         ("l" "programming languages" plain
+;;          "* Characteristics\n* Notes%?\n* Tools\n* Ressources\n\n"
+;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+;;          :unnarrowed t)
+;;         ("b" "book notes" plain
+;;          "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+;;          :unnarrowed t)
+;;         ("p" "project" plain
+;;          "* Goals\n%?\n\n* Tasks\n** TODO Add initial tasks\n* Dates\n"
+;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
+;;          :unnarrowed t)
+;;         ))
 
-(setq org-roam-dailies-capture-templates
-      '(("d" "default" entry "* %<%I:%M %p>: %?"
-         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+;; (setq org-roam-dailies-capture-templates
+;;       '(("d" "default" entry "* %<%I:%M %p>: %?"
+;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
 
 ;; LaTex
 (setq TeX-save-query nil
@@ -365,5 +278,20 @@
 
 ;; Lenses
 (setq lsp-lens-enable nil)
+
+;; Denote
+(setq denote-directory "~/Documents/Kode/Denotes")
+(setq denote-known-keywords '("cli" "code" "books" "projects" "links"))
+
+(with-eval-after-load 'org-capture
+  ;; (require 'denote-org-capture)
+  (add-to-list 'org-capture-templates
+               '("n" "New note (with Denote)" plain
+                 (file denote-last-path)
+                 #'denote-org-capture
+                 :no-save t
+                 :immediate-finish nil
+                 :kill-buffer t
+                 :jump-to-captured t)))
 
 ;; END
