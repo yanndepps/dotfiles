@@ -1,29 +1,29 @@
 # Window Customization
 window:
   dimensions:
-    columns: 140
+    columns: 90 # 140
     lines: 38
   padding:
     x: 10
     y: 10
   dynamic_padding: true
-  decorations: full
+  decorations: full # none
 scrolling:
   history: 10000
   multiplier: 3
-background_opacity: .9
+window_opacity: 1.0
 window.dynamic_title: true
 
 # Font Customization
 font:
   normal:
-    family: JetBrains Mono 
+    family: JetBrainsMono Nerd Font 
     style: Regular
   bold:
-    family:  JetBrains Mono
+    family: JetBrainsMono Nerd Font
     style: Bold
   italic:
-    family: JetBrains Mono 
+    family: JetBrainsMono Nerd Font
     style: Italic
   size: 9
   offset:
@@ -32,7 +32,7 @@ font:
   glyph_offset:
     x: 0
     y: 0
-  use_thin_strokes: false
+#  use_thin_strokes: false
   debug:
     persistent_logging: false
 draw_bold_text_with_bright_colors: true
@@ -68,33 +68,120 @@ draw_bold_text_with_bright_colors: true
 
 
 # Colors (Oceanic Next)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1b2b34'
+#     foreground: '0xd8dee9'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x29414f'
+#     red:     '0xec5f67'
+#     green:   '0x99c794'
+#     yellow:  '0xfac863'
+#     blue:    '0x6699cc'
+#     magenta: '0xc594c5'
+#     cyan:    '0x5fb3b3'
+#     white:   '0x65737e'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x405860'
+#     red:     '0xec5f67'
+#     green:   '0x99c794'
+#     yellow:  '0xfac863'
+#     blue:    '0x6699cc'
+#     magenta: '0xc594c5'
+#     cyan:    '0x5fb3b3'
+#     white:   '0xadb5c0'
+
+# gruvbox Alacritty Colors
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1d2021'
+#     foreground: '0xd4be98'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0x1D2021'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xd8a657'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     aqua:    '0x89b482'
+#     white:   '0xd4be98'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x17191a'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xd8a657'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     aqua:    '0x89b482'
+#     white:   '0xd4be98'
+#
+#   indexed_colors:
+#     - { index: 16, color: '0xe78a4e' }
+#     - { index: 17, color: '0xc14a4a' }
+
+# onenord
 colors:
   # Default colors
   primary:
-    background: '0x1b2b34'
-    foreground: '0xd8dee9'
+    background: '0x2E3440'
+    foreground: '0xC8D0E0'
 
   # Normal colors
   normal:
-    black:   '0x29414f'
-    red:     '0xec5f67'
-    green:   '0x99c794'
-    yellow:  '0xfac863'
-    blue:    '0x6699cc'
-    magenta: '0xc594c5'
-    cyan:    '0x5fb3b3'
-    white:   '0x65737e'
+    black:   '0x3B4252'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB988B0'
+    cyan:    '0x88C0D0'
+    white:   '0xE5E9F0'
 
   # Bright colors
   bright:
-    black:   '0x405860'
-    red:     '0xec5f67'
-    green:   '0x99c794'
-    yellow:  '0xfac863'
-    blue:    '0x6699cc'
-    magenta: '0xc594c5'
-    cyan:    '0x5fb3b3'
-    white:   '0xadb5c0'
+    black:   '0x4C566A'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB988B0'
+    cyan:    '0x8FBCBB'
+    white:   '0xECEFF4'
+
+  search:
+    matches:
+     foreground: '#81A1C1'
+     background: '#4C566A'
+    focused_match:
+     foreground: '#EBCB8B'
+     background: '#4C566A'
+
+    colors.footer_bar:
+     background: '#434C5E'
+     foreground: '#88C0D0'
+
+  hints:
+    start:
+     foreground: '#B988B0'
+     background: '#4C566A'
+
+    end:
+     foreground: '#81A1C1'
+     background: '#4C566A'
+
+  selection:
+   text: CellForeground
+   background: '#3F4758'
 
 cursor:
   style: Block
