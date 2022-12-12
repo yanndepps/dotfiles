@@ -11,8 +11,11 @@ export ZSH="/home/depps/.oh-my-zsh"
 # Path to DOOM-EMACS
 export PATH=~/.emacs.d/bin:$PATH
 
+# lvim cli
+export PATH="$HOME/.local/bin":$PATH
+
 # Path to Processing
-export PATH=~/P5/:$PATH
+# export PATH=~/P5/:$PATH
 
 # Path to pyenv
 # export PATH="$HOME/.pyenv/bin:$PATH"
@@ -22,7 +25,10 @@ export PATH=$PATH:~/zig
 # export PATH=$PATH:~/zls
 
 # Guile3
-export PATH=$PATH:/usr/bin/guile3
+# export PATH=$PATH:/usr/bin/guile3
+
+# Guix
+# export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 
 # LSP
 # export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
