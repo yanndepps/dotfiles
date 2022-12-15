@@ -175,6 +175,10 @@ lvim.plugins = {
     {
       "shaunsingh/nord.nvim"
     },
+  -- editor config 
+    {
+      "gpanders/editorconfig.nvim"
+    },
 }
 
 -- Options 

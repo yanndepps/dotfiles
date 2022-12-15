@@ -9,7 +9,8 @@
    '((geiser-scheme-implementation . guile)
      (eval setq-local geiser-guile-binary
            (concat default-directory "bin/flux-studio"))))
- '(warning-suppress-types '((emacs))))
+ '(warning-suppress-log-types '((org-element-cache) (org-element-cache) (emacs)))
+ '(warning-suppress-types '((org-element-cache) (emacs))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
