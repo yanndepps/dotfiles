@@ -13,14 +13,6 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })
-
   use 'shaunsingh/nord.nvim'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -29,6 +21,8 @@ return require('packer').startup(function(use)
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('tpope/vim-surround')
+  use('tpope/vim-commentary')
+  use('junegunn/goyo.vim')
 
   use {
   'VonHeikemen/lsp-zero.nvim',
