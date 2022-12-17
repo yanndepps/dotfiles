@@ -37,151 +37,55 @@ font:
     persistent_logging: false
 draw_bold_text_with_bright_colors: true
 
-# Colors (Nord)
-# colors:
-#    # Default colors
-#    primary:
-#      background: '#2E3440'
-#      foreground: '#D8DEE9'
-
-#    # Normal colors
-#    normal:
-#      black:   '#3B4252'
-#      red:     '#BF616A'
-#      green:   '#A3BE8C'
-#      yellow:  '#EBCB8B'
-#      blue:    '#81A1C1'
-#      magenta: '#B48EAD'
-#      cyan:    '#88C0D0'
-#      white:   '#E5E9F0'
-
-#    # Bright colors
-#    bright:
-#      black:   '#4C566A'
-#      red:     '#BF616A'
-#      green:   '#A3BE8C'
-#      yellow:  '#EBCB8B'
-#      blue:    '#81A1C1'
-#      magenta: '#B48EAD'
-#      cyan:    '#8FBCBB'
-#      white:   '#ECEFF4'
-
-
-# Colors (Oceanic Next)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x1b2b34'
-#     foreground: '0xd8dee9'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x29414f'
-#     red:     '0xec5f67'
-#     green:   '0x99c794'
-#     yellow:  '0xfac863'
-#     blue:    '0x6699cc'
-#     magenta: '0xc594c5'
-#     cyan:    '0x5fb3b3'
-#     white:   '0x65737e'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x405860'
-#     red:     '0xec5f67'
-#     green:   '0x99c794'
-#     yellow:  '0xfac863'
-#     blue:    '0x6699cc'
-#     magenta: '0xc594c5'
-#     cyan:    '0x5fb3b3'
-#     white:   '0xadb5c0'
-
-# gruvbox Alacritty Colors
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x1d2021'
-#     foreground: '0xd4be98'
-#
-#   # Normal colors
-#   normal:
-#     black:   '0x1D2021'
-#     red:     '0xea6962'
-#     green:   '0xa9b665'
-#     yellow:  '0xd8a657'
-#     blue:    '0x7daea3'
-#     magenta: '0xd3869b'
-#     aqua:    '0x89b482'
-#     white:   '0xd4be98'
-#
-#   # Bright colors
-#   bright:
-#     black:   '0x17191a'
-#     red:     '0xea6962'
-#     green:   '0xa9b665'
-#     yellow:  '0xd8a657'
-#     blue:    '0x7daea3'
-#     magenta: '0xd3869b'
-#     aqua:    '0x89b482'
-#     white:   '0xd4be98'
-#
-#   indexed_colors:
-#     - { index: 16, color: '0xe78a4e' }
-#     - { index: 17, color: '0xc14a4a' }
-
-# onenord
+# nord
 colors:
-  # Default colors
   primary:
-    background: '0x2E3440'
-    foreground: '0xC8D0E0'
-
-  # Normal colors
-  normal:
-    black:   '0x3B4252'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
-    magenta: '0xB988B0'
-    cyan:    '0x88C0D0'
-    white:   '0xE5E9F0'
-
-  # Bright colors
-  bright:
-    black:   '0x4C566A'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
-    magenta: '0xB988B0'
-    cyan:    '0x8FBCBB'
-    white:   '0xECEFF4'
-
+    background: '#2e3440'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
+  cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
   search:
     matches:
-     foreground: '#81A1C1'
-     background: '#4C566A'
-    focused_match:
-     foreground: '#EBCB8B'
-     background: '#4C566A'
-
-    colors.footer_bar:
-     background: '#434C5E'
-     foreground: '#88C0D0'
-
-  hints:
-    start:
-     foreground: '#B988B0'
-     background: '#4C566A'
-
-    end:
-     foreground: '#81A1C1'
-     background: '#4C566A'
-
-  selection:
-   text: CellForeground
-   background: '#3F4758'
+      foreground: CellBackground
+      background: '#88c0d0'
+  colors.footer_bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
+  normal:
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
+  bright:
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
+  dim:
+    black: '#373e4d'
+    red: '#94545d'
+    green: '#809575'
+    yellow: '#b29e75'
+    blue: '#68809a'
+    magenta: '#8c738c'
+    cyan: '#6d96a5'
+    white: '#aeb3bb'
 
 cursor:
   style: Block
