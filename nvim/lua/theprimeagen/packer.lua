@@ -24,6 +24,16 @@ return require('packer').startup(function(use)
   use('tpope/vim-commentary')
   use('junegunn/goyo.vim')
 
+  use('gpanders/editorconfig.nvim')
+
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+ use('nvim-lualine/lualine.nvim')
+ use('lukas-reineke/indent-blankline.nvim')
+
   use {
   'VonHeikemen/lsp-zero.nvim',
   requires = {

@@ -14,6 +14,9 @@ export PATH=~/.emacs.d/bin:$PATH
 # lvim cli
 export PATH="$HOME/.local/bin":$PATH
 
+# where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+
 # Path to Processing
 # export PATH=~/P5/:$PATH
 
