@@ -17,13 +17,13 @@ window.dynamic_title: true
 # Font Customization
 font:
   normal:
-    family: JetBrainsMono Nerd Font 
+    family: JetBrains Mono
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font
+    family: JetBrains Mono
     style: Bold
   italic:
-    family: JetBrainsMono Nerd Font
+    family: JetBrains Mono
     style: Italic
   size: 9
   offset:
@@ -94,4 +94,4 @@ cursor:
 alt_send_esc: false
 
 key_bindings:
-  - { key: N,           mods: Control,        action: SpawnNewInstance           }
+  - { key: N,           mods: Super,       action: SpawnNewInstance           }
