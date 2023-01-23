@@ -2,6 +2,7 @@
 ;;; ~/.doom.d/packages.el
 
 ;; (package! extempore-mode)
+(package! straight :pin "3eca39d")
 (package! tidal)
 (package! nov)
 (package! ox-gfm)
