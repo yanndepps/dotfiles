@@ -5,6 +5,9 @@ alias cpu-max='tuned-adm profile latency-performance'
 alias cpu-balanced='tuned-adm profile balanced'
 alias cpu-min='tuned-adm profile laptop-battery-powersave'
 
+# Python EPFL alias 
+alias python='/usr/bin/python3'
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/depps/.oh-my-zsh"
 

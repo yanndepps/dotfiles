@@ -10,7 +10,7 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false
+lvim.format_on_save.enabled = true
 lvim.colorscheme = "nord"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -112,6 +112,8 @@ lvim.builtin.treesitter.highlight.enable = true
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
+require("lvim.lsp.manager").setup("emmet_ls")
+
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
@@ -129,20 +131,20 @@ lvim.builtin.treesitter.highlight.enable = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
+  --   {
+  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "prettier",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--print-with", "100" },
+  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --     filetypes = { "typescript", "typescriptreact" },
+  --   },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -164,25 +166,28 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- Additional Plugins
 lvim.plugins = {
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
   -- more colorschemes
-    {
-      "VDuchauffour/neodark.nvim"
-    },
-    {
-      "shaunsingh/nord.nvim"
-    },
-  -- editor config 
-    {
-      "gpanders/editorconfig.nvim"
-    },
+  {
+    "shaunsingh/nord.nvim"
+  },
+  -- editor config
+  {
+    "gpanders/editorconfig.nvim"
+  },
 }
 
--- Options 
+-- Options
 vim.opt.relativenumber = true
+
+-- Editorconfig
+vim.cmd [[
+let g:EditorConfig_exec_path = '/usr/bin/editorconfig'
+let g:EditorConfig_core_mode = 'external_command'
+]]
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

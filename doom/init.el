@@ -175,8 +175,11 @@
        ;;purescript        ; javascript, but functional
        ;;(python
        ;; +lsp
+       ;; +tree-sitter
+       ;; +black
+       ;; +nose
+       ;; +isort
        ;; +pyright
-       ;; +pyenv
        ;; +poetry)         ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
