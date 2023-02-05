@@ -10,5 +10,6 @@
 (package! glsl-mode)
 (package! ranger)
 (package! denote)
+(package! graphviz-dot-mode)
 ;; (package! org-super-agenda)
 ;; (package! processing-mode)

@@ -118,6 +118,13 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(85 60))
 ;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
+;; No frame deocartion
+;; (set-frame-parameter nil 'undecorated t)
+
+;; Paren highlight
+;; (show-paren-mode 1)
+;; (setq show-paren-delay 0)
+
 ;; SuperCollider
 (add-to-list 'load-path "/home/depps/.local/share/SuperCollider/downloaded-quarks/scel/el")
 (require 'sclang)

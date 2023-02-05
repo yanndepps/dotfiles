@@ -178,6 +178,7 @@ lvim.plugins = {
   {
     "gpanders/editorconfig.nvim"
   },
+  { "tpope/vim-surround" },
 }
 
 -- Options
