@@ -1,7 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; ~/.doom.d/packages.el
 
-;; (package! extempore-mode)
 (package! straight :pin "3eca39d")
 (package! tidal)
 (package! nov)
@@ -13,3 +12,4 @@
 (package! graphviz-dot-mode)
 ;; (package! org-super-agenda)
 ;; (package! processing-mode)
+;; (package! extempore-mode)
