@@ -1,9 +1,8 @@
-#+LaTeX_CLASS: org-plain-latex
-#+LaTeX_CLASS_OPTIONS: [letterpaper, 11pt]
-#+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+#+LATEX_CLASS: org-plain-latex
+#+LATEX_CLASS_OPTIONS: [article, 9pt]
 
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
-#+LATEX_HEADER: \usepackage[AUTO]{inputenc}
+#+LATEX_HEADER: \usepackage{tgadventor} % Ensures we have the right font
 #+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
 #+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
@@ -40,15 +39,17 @@
 % Spacing, titling, text setting.
 #+LATEX_HEADER: \usepackage[explicit]{titlesec}
 
+% Ensure use of our selected font through the whole document
+#+LATEX_HEADER: \renewcommand{\familydefault}{qag}
+
 % Title customization
-#+LATEX_HEADER: \pretitle{\begin{center}\fontsize{20pt}{20pt}\selectfont}
+#+LATEX_HEADER: \pretitle{\begin{center}\fontfamily{qag}\fontsize{20pt}{20pt}\selectfont}
 #+LATEX_HEADER: \posttitle{\par\end{center}}
-#+LATEX_HEADER: \preauthor{\begin{center}\vspace{-6bp}\fontsize{14pt}{14pt}\selectfont}
+#+LATEX_HEADER: \preauthor{\begin{center}\vspace{-6bp}\fontfamily{qag}\fontsize{14pt}{14pt}\selectfont}
 #+LATEX_HEADER: \postauthor{\par\end{center}\vspace{-25bp}}
 
-#+LATEX_HEADER: \predate{\begin{center}\fontsize{12pt}{12pt}\selectfont}
+#+LATEX_HEADER: \predate{\begin{center}\fontfamily{qag}\fontsize{12pt}{12pt}\selectfont}
 #+LATEX_HEADER: \postdate{\par\end{center}\vspace{0em}}
-
 
 % Section/subsection headings:
 
@@ -88,6 +89,6 @@
 #+LATEX_HEADER: \definecolor{codepurple}{rgb}{0.58,0,0.82}
 #+LATEX_HEADER: \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-#+LATEX_HEADER: \lstdefinestyle{mystyle}{backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen}, keywordstyle=\color{magenta}, numberstyle=\tiny\color{codegray}, stringstyle=\color{codepurple}, basicstyle=\ttfamily\footnotesize, breakatwhitespace=false, breaklines=true, captionpos=b, keepspaces=true, numbers=left, numbersep=5pt, showspaces=false, showstringspaces=false, showtabs=false, tabsize=2}
+#+LATEX_HEADER: \lstdefinestyle{mystyle}{backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen}, keywordstyle=\color{magenta}, numberstyle=\tiny\color{codegray}, stringstyle=\color{codepurple}, basicstyle=\selectfont\footnotesize, breakatwhitespace=false, breaklines=true, captionpos=b, keepspaces=true, numbers=left, numbersep=5pt, showspaces=false, showstringspaces=false, showtabs=false, tabsize=2}
 
 #+LATEX_HEADER: \lstset{style=mystyle}

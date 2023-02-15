@@ -208,7 +208,7 @@
 (with-eval-after-load 'ox-latex
 (add-to-list 'org-latex-classes
              '("org-plain-latex"
-               "\\documentclass{article}
+               "\\documentclass[9pt, a4paper]{article}
            [NO-DEFAULT-PACKAGES]
            [PACKAGES]
            [EXTRA]"
