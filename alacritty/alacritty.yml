@@ -87,11 +87,11 @@ colors:
     cyan: '#6d96a5'
     white: '#aeb3bb'
 
-cursor:
-  style: Block
-  unfocused_hollow: true
+# cursor:
+#   style: Block
+#   unfocused_hollow: true
 
-alt_send_esc: false
+Alacritty.Cursor.Style: Block
 
 key_bindings:
   - { key: N,           mods: Super,       action: SpawnNewInstance           }
