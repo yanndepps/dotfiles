@@ -14,6 +14,9 @@ export ZSH="/home/depps/.oh-my-zsh"
 # Path to DOOM-EMACS
 export PATH=~/.emacs.d/bin:$PATH
 
+# helix runtime
+export HELIX_RUNTIME="/usr/lib/helix/runtime"
+
 # lvim cli
 export PATH="$HOME/.local/bin":$PATH
 
@@ -53,9 +56,9 @@ export KEYTIMEOUT=1
 # fzf shit
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export FZF_DEFAULT_COMMAND="rg --files --follow --hidden"
-export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
-export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
-export FZF_ALT_C_COMMAND="fd --type d --no-ignore-vcs --exclude node_modules --exclude .git"
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules,venv}/**'"
+export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules,venv}/**'"
+export FZF_ALT_C_COMMAND="fd --type d --no-ignore-vcs --exclude node_modules --exclude .git --exclude venv"
 
 # more shit
 
