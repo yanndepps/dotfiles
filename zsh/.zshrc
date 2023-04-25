@@ -15,7 +15,7 @@ export ZSH="/home/depps/.oh-my-zsh"
 export PATH=~/.emacs.d/bin:$PATH
 
 # helix runtime
-export HELIX_RUNTIME="/usr/lib/helix/runtime"
+# export HELIX_RUNTIME="/usr/lib/helix/runtime"
 
 # lvim cli
 export PATH="$HOME/.local/bin":$PATH

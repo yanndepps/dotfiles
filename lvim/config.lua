@@ -31,14 +31,16 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 -- -- Change theme settings
-vim.g.edge_style = 'aura'
-vim.g.edge_better_performance = 1
-lvim.colorscheme = "edge"
--- vim.g.material_style = "oceanic"
+require('material').setup({
+  lualine_style = 'stealth'   -- the stealth style
+})
+
+lvim.colorscheme = "material"
+vim.g.material_style = "oceanic" -- darker, lighter, oceanic, palenight, deep ocean
 
 -- lualine
 lvim.builtin.lualine.style = "default"
-lvim.builtin.lualine.options.theme = "edge"
+lvim.builtin.lualine.options.theme = "material"
 
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
@@ -112,10 +114,6 @@ lvim.plugins = {
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
-  },
-  -- edge
-  {
-    'sainnhe/edge'
   },
   -- material
   {
