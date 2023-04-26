@@ -29,10 +29,10 @@
       doom-big-font (font-spec :family "JetBrains Mono" :size 19))
 
 ;; Face nov.el
-(defun my-nov-font-setup ()
-  (face-remap-add-relative 'variable-pitch :family "JetBrains Mono"
-                                           :size 12))
-(add-hook 'nov-mode-hook 'my-nov-font-setup)
+;; (defun my-nov-font-setup ()
+;;  (face-remap-add-relative 'variable-pitch :family "JetBrains Mono"
+;;                                           :size 12))
+;; (add-hook 'nov-mode-hook 'my-nov-font-setup)
 
 ;; Some Defaults
 (setq-default
@@ -68,12 +68,12 @@
       evil-split-window-below t)
 
 ;; now pull up ivy
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
+;; (defadvice! prompt-for-buffer (&rest _)
+;;  :after '(evil-window-split evil-window-vsplit)
+;;  (+ivy/switch-buffer))
 
 ;; preview are nice
-(setq +ivy-buffer-preview t)
+;; (setq +ivy-buffer-preview t)
 
 ;; LF UTF-8 being the default file encoding,
 ;; let's conditionally hide it
@@ -126,8 +126,8 @@
 ;; (setq show-paren-delay 0)
 
 ;; SuperCollider
-(add-to-list 'load-path "/home/depps/.local/share/SuperCollider/downloaded-quarks/scel/el")
-(require 'sclang)
+;; (add-to-list 'load-path "/home/depps/.local/share/SuperCollider/downloaded-quarks/scel/el")
+;; (require 'sclang)
 
 ;; Processing
 ;; (setq processing-location "~/P5/processing-java")
@@ -149,12 +149,12 @@
 ;; (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;; nov.el
-(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; Modules
 ;; (load! "+ui")
-(load! "+ranger")
-(ranger-override-dired-mode t)
+;; (load! "+ranger")
+;; (ranger-override-dired-mode t)
 
 ;; Org
 (setq org-directory "~/Documents/Kode/org"        ; let's put files here
@@ -253,35 +253,6 @@
       org-journal-date-format "%a, %Y-%m-%d"
       org-journal-file-format "%Y-%m-%d.org")
 
-;; Org Roam
-;; (setq org-roam-v2-ack t)
-;; (setq org-roam-directory "~/Documents/Kode/roamNotes")
-;; (setq org-roam-completion-everywhere t)
-;; (map! :after evil-org
-;;       :map evil-org-mode-map
-;;       :ni [C-M-i] #'completion-at-point)
-;; (setq org-roam-capture-templates
-;;       '(("d" "default" plain
-;;          "%?"
-;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-;;          :unnarrowed t)
-;;         ("l" "programming languages" plain
-;;          "* Characteristics\n* Notes%?\n* Tools\n* Ressources\n\n"
-;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-;;          :unnarrowed t)
-;;         ("b" "book notes" plain
-;;          "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
-;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-;;          :unnarrowed t)
-;;         ("p" "project" plain
-;;          "* Goals\n%?\n\n* Tasks\n** TODO Add initial tasks\n* Dates\n"
-;;          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
-;;          :unnarrowed t)
-;;         ))
-
-;; (setq org-roam-dailies-capture-templates
-;;       '(("d" "default" entry "* %<%I:%M %p>: %?"
-;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
 
 ;; LaTex
 (setq TeX-save-query nil
@@ -301,7 +272,7 @@
 ;; (setq lsp-zig-zls-executable "~/zls/")
 
 ;; Path to Guile3
-(setq geiser-guile-binary "/usr/bin/guile3")
+;; (setq geiser-guile-binary "/usr/bin/guile3")
 
 ;; Lenses
 (setq lsp-lens-enable nil)
