@@ -26,9 +26,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 # Path to Processing
 # export PATH=~/P5/:$PATH
 
-# Path to pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-
 # Path to Zig
 export PATH=$PATH:~/zig
 # export PATH=$PATH:~/zls
