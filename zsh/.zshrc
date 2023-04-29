@@ -4,7 +4,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "Freed-Wu/fzf-tab-source"
+plug "zap-zsh/fzf"
 
 # ---
 # Python
@@ -15,9 +15,6 @@ export PATH=~/.config/emacs/bin:$PATH
 
 # lvim cli
 export PATH="$HOME/.local/bin":$PATH
-
-# fzf-tab
-# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # sources
 source /usr/share/nvm/init-nvm.sh
