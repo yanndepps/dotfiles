@@ -1,0 +1,78 @@
+# Use powerline
+# USE_POWERLINE="false"
+# Source manjaro-zsh-configuration
+# if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+#  source /usr/share/zsh/manjaro-zsh-config
+# fi
+# Use manjaro zsh prompt
+# if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+#  source /usr/share/zsh/manjaro-zsh-prompt
+# fi
+
+
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+alias cpu-max='tuned-adm profile latency-performance'
+alias cpu-balanced='tuned-adm profile balanced'
+alias cpu-min='tuned-adm profile laptop-battery-powersave'
+
+# Python EPFL alias 
+alias python='/usr/bin/python3'
+
+# Path to your oh-my-zsh installation.
+# export ZSH="/home/depps/.oh-my-zsh"
+
+# Path to DOOM-EMACS
+export PATH=~/.emacs.d/bin:$PATH
+
+# helix runtime
+# export HELIX_RUNTIME="/usr/lib/helix/runtime"
+
+# lvim cli
+export PATH="$HOME/.local/bin":$PATH
+
+# where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+
+# Path to Processing
+# export PATH=~/P5/:$PATH
+
+# Path to Zig
+export PATH=$PATH:~/zig
+# export PATH=$PATH:~/zls
+
+# Guile3
+# export PATH=$PATH:/usr/bin/guile3
+
+# Guix
+# export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+
+# LSP
+# export PATH=$HOME/usr/local/bin/typescript-language-server:$PATH
+#
+# vim shit
+export VISUAL=nvim
+export EDITOR=nvim
+
+# vim binding shit
+bindkey -v 
+bindkey '^R' history-incremental-search-backward
+bindkey '^P' up-history
+bindkey '^N' down-history
+export KEYTIMEOUT=1
+
+# fzf shit
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export FZF_DEFAULT_COMMAND="rg --files --follow --hidden"
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules,venv}/**'"
+export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules,venv}/**'"
+export FZF_ALT_C_COMMAND="fd --type d --no-ignore-vcs --exclude node_modules --exclude .git --exclude venv"
+
+# more shit
+
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
+# export LANG=en_US.UTF-8
+
+
