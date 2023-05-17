@@ -136,17 +136,17 @@
 ;; (setq processing-output-dir "/tmp")
 
 ;; LSP-mode with ccls
-(after! ccls
-  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
-  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+;; (after! ccls
+  ;; (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  ;; (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
 
 ;; LSP-mode with clangd
-;; (setq lsp-clients-clangd-args '("-j=3"
-;;                                 "--background-index"
-;;                                 "--clang-tidy"
-;;                                 "--completion-style=detailed"
-;;                                 "--header-insertion=never"))
-;; (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;; nov.el
 ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
@@ -162,7 +162,7 @@
       org-log-done 'time                          ; having the time a item is done sounds convininet
       org-list-allow-alphabetical t               ; have a. A. a) A) list bullets
       org-export-in-background t                  ; run export processes in external emacs process
-      org-catch-invisible-edits 'smart            ; try not to accidently do weird stuff in invisible regions
+      org-fold-catch-invisible-edits 'smart            ; try not to accidently do weird stuff in invisible regions
       org-re-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
 
 ;; Default Babel Headers

@@ -19,12 +19,13 @@
        ;;japanese
 
        :completion
+       (vertico +icons)
        (company +childframe)           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy
-        +icons
-        +prescient)               ; a search engine for love and life
+       ;; (ivy
+        ;; +icons
+        ;; +prescient)               ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -50,7 +51,7 @@
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
-       vc-gutter         ; vcs diff in the fringe
+       (vc-gutter +pretty)         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        (window-select
         +numbers)          ; visually switch windows
@@ -72,7 +73,8 @@
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +ranger
+       (dired
+              ;; +ranger
               +icons)      ; making dired pretty [functional]
        electric            ; smarter, keyword-based electric-indent
        (ibuffer +icons)             ; interactive buffer management
@@ -122,7 +124,9 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       (cc +lsp)           ; C/C++/Obj-C madness
+       (cc
+        +lsp
+        +tree-sitter)           ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -192,7 +196,9 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       (web +lsp)               ; the tubes
+       (web
+        +lsp
+        +tree-sitter)               ; the tubes
        ;;yaml              ; JSON, but readable
        (zig +lsp)
 
