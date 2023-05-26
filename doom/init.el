@@ -177,11 +177,11 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python
-        +lsp
-        +tree-sitter
-        +pyright
-        +poetry)         ; beautiful is better than ugly
+       ;; (python
+        ;; +lsp
+        ;; +tree-sitter
+        ;; +pyright
+        ;; +poetry)         ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -190,7 +190,7 @@
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (scheme +guile)            ; a fully conniving family of lisps
+       ;; (scheme +guile)            ; a fully conniving family of lisps
        sh                  ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
@@ -200,7 +200,7 @@
         +lsp
         +tree-sitter)               ; the tubes
        ;;yaml              ; JSON, but readable
-       (zig +lsp)
+       ;; (zig +lsp)
 
        :email
        ;;(mu4e +gmail)

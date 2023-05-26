@@ -32,11 +32,11 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- -- Change theme settings
 require('material').setup({
-  lualine_style = 'stealth'   -- the stealth style
+  lualine_style = 'stealth' -- the stealth style
 })
 
 lvim.colorscheme = "material"
-vim.g.material_style = "oceanic" -- darker, lighter, oceanic, palenight, deep ocean
+vim.g.material_style = "palenight" -- darker, lighter, oceanic, palenight, deep ocean
 
 -- lualine
 lvim.builtin.lualine.style = "default"

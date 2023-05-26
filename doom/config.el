@@ -6,16 +6,7 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (load-theme 'doom-tomorrow-night t)
-  ;; (load-theme 'doom-opera t)
-  ;; (load-theme 'doom-oceanic-next t)
-  ;; (load-theme 'doom-nord t)
 
-  ;; Enable flashing mode-line on errors
-  ;; (doom-themes-visual-bell-config)
-
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  ;; (doom-themes-neotree-config)
-  ;; or for treemacs users
   (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
   (doom-themes-treemacs-config)
 
@@ -27,12 +18,6 @@
       doom-variable-pitch-font (font-spec :family "JetBrains Mono") ; inherits `doom-font''s :size
       doom-unicode-font (font-spec :family "JetBrains Mono" :size 12)
       doom-big-font (font-spec :family "JetBrains Mono" :size 19))
-
-;; Face nov.el
-;; (defun my-nov-font-setup ()
-;;  (face-remap-add-relative 'variable-pitch :family "JetBrains Mono"
-;;                                           :size 12))
-;; (add-hook 'nov-mode-hook 'my-nov-font-setup)
 
 ;; Some Defaults
 (setq-default
@@ -67,14 +52,6 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; now pull up ivy
-;; (defadvice! prompt-for-buffer (&rest _)
-;;  :after '(evil-window-split evil-window-vsplit)
-;;  (+ivy/switch-buffer))
-
-;; preview are nice
-;; (setq +ivy-buffer-preview t)
-
 ;; LF UTF-8 being the default file encoding,
 ;; let's conditionally hide it
 (defun doom-modeline-conditional-buffer-encoding ()
@@ -88,14 +65,6 @@
 ;; Nicer default buffer names
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
-
-
-;; Company
-;; (after! company
-;;   (setq company-idle-delay 0.5
-;;         company-minimum-prefix-length 2)
-;;   (setq company-show-numbers t)
-;; (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
 
 ;; History
 (setq-default history-length 1000)
@@ -129,12 +98,6 @@
 ;; (add-to-list 'load-path "/home/depps/.local/share/SuperCollider/downloaded-quarks/scel/el")
 ;; (require 'sclang)
 
-;; Processing
-;; (setq processing-location "~/P5/processing-java")
-;; (setq processing-application-dir "~/P5/processing")
-;; (setq processing-sketchbook-dir "~/Documents/Kode/Sketchbook/")
-;; (setq processing-output-dir "/tmp")
-
 ;; LSP-mode with ccls
 ;; (after! ccls
   ;; (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
@@ -147,9 +110,6 @@
                                 "--completion-style=detailed"
                                 "--header-insertion=never"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
-
-;; nov.el
-;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; Modules
 ;; (load! "+ui")
@@ -232,8 +192,6 @@
 
 
 ;; (setq projectile-project-search-path '("~/Documents/Kode/"))
-
-;; (setq mac-command-modifier 'meta)
 
 ;; Treemacs
 (setq treemacs-position 'right)
