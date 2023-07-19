@@ -16,6 +16,9 @@ export PATH=~/.config/emacs/bin:$PATH
 # lvim cli
 export PATH="$HOME/.local/bin":$PATH
 
+# OF
+export PG_OF_PATH=/home/depps/OF
+
 # sources
 source /usr/share/nvm/init-nvm.sh
 source "$HOME/.cargo/env"
