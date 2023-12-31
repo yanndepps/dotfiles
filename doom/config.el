@@ -88,7 +88,7 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 60))
 
 ;; No frame deocartion
-;; (set-frame-parameter nil 'undecorated t)
+(set-frame-parameter nil 'undecorated t)
 
 ;; Paren highlight
 ;; (show-paren-mode 1)
@@ -186,10 +186,13 @@
 (setq org-latex-src-block-backend 'listings)
 
 ;; editorconfig
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1))
+;; (use-package editorconfig
+;;  :config
+;;  (editorconfig-mode 1))
 
+;; clang-format
+;; (load "/usr/bin/clang/tools/clang-format/clang-format.el")
+;; (global-set-key [C-M-tab] 'clang-format-region)
 
 ;; (setq projectile-project-search-path '("~/Documents/Kode/"))
 
